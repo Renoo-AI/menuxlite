@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Saint Tropez — La Marsa | Brunch & Pâtisserie Fine</title>
 
   <!-- SEO & Open Graph -->
@@ -30,15 +30,13 @@
 
   <style>
     :root {
-      --cream: #FAF8F5;
-      --linen: #F3EFE9;
-      --white: #FFFFFF;
+      --bg: #FAF8F5;
+      --surface: #FFFFFF;
+      --accent: #AF835D;
       --text: #1A1412;
       --muted: #6B5E56;
-      --light: #9E9088;
-      --gold: #AF835D;
       --border: rgba(26, 20, 18, 0.05);
-      --shadow: 0 20px 50px rgba(26, 20, 18, 0.04);
+      --shadow: 0 10px 40px rgba(175, 131, 93, 0.05);
 
       --serif: 'Cinzel', Georgia, serif;
       --sans: 'Plus Jakarta Sans', system-ui, sans-serif;
@@ -51,10 +49,11 @@
 
     body {
       font-family: var(--sans);
-      background: var(--cream);
+      background: var(--bg);
       color: var(--text);
       line-height: 1.6;
       -webkit-font-smoothing: antialiased;
+      -webkit-tap-highlight-color: transparent;
     }
 
     .view-container {
@@ -83,7 +82,7 @@
       font-size: 0.7rem;
       text-transform: uppercase;
       letter-spacing: 0.4em;
-      color: var(--gold);
+      color: var(--accent);
       font-weight: 600;
       display: block;
       margin-bottom: 1.25rem;
@@ -125,7 +124,6 @@
     .text-center { text-align: center; }
     .mt-1 { margin-top: 1rem; }
     .mt-2 { margin-top: 2rem; }
-    .mt-3 { margin-top: 3rem; }
 
     .btn {
       display: inline-flex;
@@ -142,7 +140,7 @@
 
     .btn-fill {
       background: var(--text);
-      color: var(--cream);
+      color: var(--bg);
       border: 1px solid var(--text);
     }
     .btn-fill:hover { background: #3b2a21; }
@@ -164,7 +162,7 @@
     }
     .btn-line:hover {
       background: var(--text);
-      color: var(--cream);
+      color: var(--bg);
     }
 
     .topbar {
@@ -279,7 +277,7 @@
       font-size: 0.7rem;
       letter-spacing: 0.2em;
       text-transform: uppercase;
-      animation: fadeIn 2s ease-in-out forwards;
+      animation: fadeInIndicator 2s ease-in-out forwards;
     }
 
     .scroll-indicator i {
@@ -293,7 +291,7 @@
       60% {transform: translateY(-3px);}
     }
 
-    @keyframes fadeIn {
+    @keyframes fadeInIndicator {
       from { opacity: 0; transform: translate(-50%, 20px); }
       to { opacity: 1; transform: translate(-50%, 0); }
     }
@@ -316,14 +314,11 @@
       .hero h1 { margin-bottom: 1rem; }
       .hero .loc { margin-bottom: 2.5rem; }
 
-      .menu-page-header { padding: 0.85rem 0; }
-      .menu-header-left h2 { font-size: 1.4rem; }
-      .btn-return { padding: 8px 12px; gap: 8px; border-radius: 2px; }
-      .menu-tabs-scroll { gap: 1rem; }
-      .menu-tab-btn { font-size: 0.75rem; letter-spacing: 0.15em; padding: 10px 4px; }
-
-      .menu-item-row { gap: 1rem; }
-      .menu-item-thumb { width: 70px; height: 70px; }
+      .menu-page-header { padding: 1rem 0; }
+      .menu-header-left h2 { font-size: 1.5rem; }
+      .btn-return { padding: 8px 16px; border-radius: 100px; }
+      .menu-tabs-scroll { gap: 1.25rem; }
+      .menu-tab-btn { font-size: 0.8rem; letter-spacing: 0.1em; padding: 10px 2px; }
     }
 
     .vibe {
@@ -400,12 +395,12 @@
 
     .card-body .price {
       font-size: 0.9rem;
-      color: var(--gold);
+      color: var(--accent);
       font-weight: 600;
     }
 
     .editorial-quote {
-      background: var(--cream);
+      background: var(--bg);
       text-align: center;
       padding: 12rem 0;
     }
@@ -429,7 +424,7 @@
       font-size: 0.75rem;
       text-transform: uppercase;
       letter-spacing: 0.4em;
-      color: var(--gold);
+      color: var(--accent);
       font-weight: 600;
     }
 
@@ -454,7 +449,7 @@
       font-size: 0.75rem;
       text-transform: uppercase;
       letter-spacing: 0.16em;
-      color: var(--gold);
+      color: var(--accent);
       font-weight: 600;
       margin-bottom: 0.3rem;
     }
@@ -486,7 +481,7 @@
       position: relative;
       padding-top: 80%;
       border: 1px solid var(--border);
-      background: var(--cream);
+      background: var(--bg);
       overflow: hidden;
     }
 
@@ -525,9 +520,9 @@
 
     #menu-view {
       min-height: 100vh;
-      background-color: var(--cream);
-      background-image: radial-gradient(rgba(38, 26, 20, 0.02) 1px, transparent 0);
-      background-size: 20px 20px;
+      background-color: var(--bg);
+      background-image: radial-gradient(rgba(175, 131, 93, 0.03) 1px, transparent 0);
+      background-size: 24px 24px;
       display: flex;
       flex-direction: column;
     }
@@ -536,9 +531,9 @@
       position: sticky;
       top: 0;
       z-index: 100;
-      background: var(--white);
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(20px);
       border-bottom: 1px solid var(--border);
-      box-shadow: 0 4px 20px rgba(26, 18, 14, 0.02);
     }
 
     .menu-page-header {
@@ -559,7 +554,7 @@
 
     .menu-header-left p {
       font-size: 0.75rem;
-      color: var(--gold);
+      color: var(--accent);
       letter-spacing: 0.15em;
       text-transform: uppercase;
       font-weight: 600;
@@ -569,33 +564,34 @@
     .btn-return {
       display: inline-flex;
       align-items: center;
-      gap: 12px;
-      padding: 10px 18px;
-      border: 1px solid var(--text);
-      border-radius: 4px;
+      gap: 10px;
+      padding: 10px 20px;
+      border: 1px solid rgba(26, 20, 18, 0.1);
+      border-radius: 100px;
       font-size: 0.75rem;
-      font-weight: 600;
-      letter-spacing: 0.1em;
+      font-weight: 700;
+      letter-spacing: 0.05em;
       text-transform: uppercase;
       color: var(--text);
       transition: var(--transition);
-      background: transparent;
+      background: var(--surface);
+      box-shadow: 0 2px 10px rgba(0,0,0,0.02);
     }
 
     .btn-return:hover {
       background: var(--text);
-      color: var(--cream);
+      color: var(--bg);
+      border-color: var(--text);
     }
 
     .menu-page-tabs {
-      background: var(--cream);
       border-top: 1px solid var(--border);
       padding: 0.5rem 0;
     }
 
     .menu-tabs-scroll {
       display: flex;
-      gap: 1.75rem;
+      gap: 2rem;
       overflow-x: auto;
       scrollbar-width: none;
     }
@@ -609,7 +605,7 @@
       font-family: var(--sans);
       font-size: 0.9rem;
       font-weight: 500;
-      letter-spacing: 0.1em;
+      letter-spacing: 0.08em;
       color: var(--muted);
       text-transform: uppercase;
       position: relative;
@@ -628,7 +624,7 @@
       left: 0;
       width: 0;
       height: 2px;
-      background: var(--gold);
+      background: var(--accent);
       transition: width 0.3s ease;
     }
 
@@ -636,7 +632,7 @@
 
     .menu-tab-btn.active {
       color: var(--text);
-      font-weight: 600;
+      font-weight: 700;
     }
 
     .menu-tab-btn.active::after {
@@ -644,186 +640,80 @@
     }
 
     .menu-page-content {
-      padding: 4rem 0;
+      padding: 3rem 0 6rem;
       flex-grow: 1;
     }
 
-    .modal-overlay {
-      position: fixed;
-      inset: 0;
-      background: rgba(15, 10, 8, 0.85);
-      backdrop-filter: blur(8px);
-      z-index: 1000;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 1.5rem;
-      opacity: 0;
-      visibility: hidden;
-      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-
-    .modal-overlay.active {
-      opacity: 1;
-      visibility: visible;
-    }
-
-    .modal-content {
-      background: var(--white);
-      width: 100%;
-      max-width: 500px;
-      border-radius: 12px;
-      overflow: hidden;
-      position: relative;
-      transform: translateY(30px) scale(0.95);
-      transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-    }
-
-    .modal-overlay.active .modal-content {
-      transform: translateY(0) scale(1);
-    }
-
-    .modal-close {
-      position: absolute;
-      top: 1rem;
-      right: 1rem;
-      width: 32px;
-      height: 32px;
-      background: var(--white);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 10;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-      color: var(--text);
-    }
-
-    .modal-img {
-      width: 100%;
-      height: 300px;
-      object-fit: cover;
-    }
-
-    .modal-body {
-      padding: 2rem;
-    }
-
-    .modal-title {
-      font-family: var(--serif);
-      font-size: 1.75rem;
-      margin-bottom: 0.5rem;
-      color: var(--text);
-    }
-
-    .modal-price {
-      font-size: 1.25rem;
-      color: var(--gold);
-      font-weight: 600;
-      margin-bottom: 1rem;
-      display: block;
-    }
-
-    .modal-desc {
-      color: var(--muted);
-      line-height: 1.7;
-      margin-bottom: 2rem;
-    }
-
-    .menu-categories-grid {
-      display: flex;
-      flex-direction: column;
-      gap: 4rem;
-    }
-
-    .menu-cat-section {
-      scroll-margin-top: 170px;
-    }
-
-    .menu-cat-title-bar {
-      font-size: 0.8rem;
-      text-transform: uppercase;
-      letter-spacing: 0.2em;
-      color: var(--gold);
-      font-weight: 700;
-      padding-bottom: 0.75rem;
-      border-bottom: 1px solid var(--border);
-      margin-bottom: 1.5rem;
-      font-family: var(--sans);
-    }
-
-    .menu-cat-items {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 3rem 4rem;
-    }
-
-    @media (max-width: 768px) {
-      .menu-cat-items {
-        grid-template-columns: 1fr;
-        gap: 2rem;
-      }
-    }
-
-    .menu-item-row {
-      display: flex;
-      gap: 1.5rem;
-      padding: 1.5rem 0;
-      border-bottom: 1px solid var(--border);
-      align-items: flex-start;
-      transition: var(--transition);
-      cursor: pointer;
-    }
-
-    .menu-item-row:hover {
-      opacity: 0.7;
-    }
-
-    .menu-item-thumb {
-      width: 80px;
-      height: 80px;
-      border-radius: 4px;
-      overflow: hidden;
-      flex-shrink: 0;
-      background: var(--linen);
+    .menu-card {
+      background: var(--surface);
       border: 1px solid var(--border);
+      border-radius: 32px;
+      padding: 3rem;
+      margin-bottom: 3rem;
+      box-shadow: var(--shadow);
+      animation: fadeInItem 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      opacity: 0;
     }
 
-    .menu-item-thumb img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
+    .category-header {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      margin-bottom: 2.5rem;
     }
 
-    .menu-item-info { flex: 1; min-width: 0; }
+    .category-header h2 {
+      font-size: 1.65rem;
+      color: var(--accent);
+      font-style: italic;
+      font-family: var(--serif);
+      font-weight: 500;
+    }
 
-    .menu-item-header {
+    .category-line {
+      height: 1px;
+      flex-grow: 1;
+      background: linear-gradient(to right, var(--accent), transparent);
+      opacity: 0.15;
+    }
+
+    .item-row {
       display: flex;
       justify-content: space-between;
       align-items: baseline;
-      gap: 0.5rem;
+      padding: 1.25rem 0;
+      border-bottom: 1px solid rgba(26, 20, 18, 0.03);
     }
 
-    .menu-item-name {
-      font-size: 1.1rem;
-      font-weight: 500;
-      color: var(--text);
-      line-height: 1.3;
-      letter-spacing: 0.02em;
+    .item-row:last-child {
+      border-bottom: none;
     }
 
-    .menu-item-price {
-      font-size: 0.95rem;
+    .item-name {
       font-weight: 600;
-      color: var(--gold);
+      font-size: 1.05rem;
+      color: var(--text);
+      opacity: 0.85;
+      padding-right: 1rem;
+    }
+
+    .item-price {
+      color: var(--accent);
+      font-weight: 800;
       white-space: nowrap;
+      font-size: 1.15rem;
+      font-family: var(--sans);
+    }
+
+    @keyframes fadeInItem {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     .menu-page-footer {
       background: var(--linen);
       border-top: 1px solid var(--border);
-      padding: 2.5rem 0;
+      padding: 3rem 0;
     }
 
     .menu-footer-container {
@@ -837,9 +727,17 @@
     @media (max-width: 600px) {
       .menu-footer-container {
         flex-direction: column;
-        gap: 12px;
+        gap: 16px;
         text-align: center;
       }
+      .menu-card {
+        padding: 2rem 1.5rem;
+        border-radius: 24px;
+        margin-bottom: 2rem;
+      }
+      .category-header { margin-bottom: 1.75rem; }
+      .item-name { font-size: 0.95rem; }
+      .item-price { font-size: 1rem; }
     }
 
     .menu-footer-brand {
@@ -856,13 +754,17 @@
       gap: 6px;
       font-weight: 500;
       color: var(--light);
-      font-size: 0.7rem;
+      font-size: 0.75rem;
       opacity: 0.6;
     }
 
     .menu-footer-credit i {
-      color: var(--gold);
+      color: var(--accent);
       font-size: 0.6rem;
+    }
+
+    .menu-cat-section {
+      scroll-margin-top: 160px;
     }
   </style>
 </head>
@@ -871,7 +773,7 @@
   <div id="landing-view" class="view-container">
 
     <header class="topbar">
-      <div class="container" style="display: flex; justify-content: space-between; align-items: center;">
+      <div class="container">
         <div class="brand">Saint Tropez <small>La Marsa</small></div>
       </div>
     </header>
@@ -999,7 +901,7 @@
         <div class="section-head">
           <span class="tag">Nous Trouver</span>
           <h2>Saint Tropez</h2>
-          <div style="margin-top: 1rem; color: var(--gold); font-weight: 600;">
+          <div style="margin-top: 1rem; color: var(--accent); font-weight: 600;">
             <i class="fa-solid fa-star"></i> 4.4 <span style="font-weight: 400; color: var(--muted); font-size: 0.9rem;">(820 avis Google)</span>
           </div>
         </div>
@@ -1031,21 +933,6 @@
         </div>
       </div>
     </section>
-
-    <div class="modal-overlay" id="itemModal">
-      <div class="modal-content">
-        <button class="modal-close" id="modalClose">
-          <i class="fa-solid fa-xmark"></i>
-        </button>
-        <img src="" alt="" class="modal-img" id="modalImg">
-        <div class="modal-body">
-          <h2 class="modal-title" id="modalTitle"></h2>
-          <span class="modal-price" id="modalPrice"></span>
-          <p class="modal-desc" id="modalDesc"></p>
-          <button class="btn btn-fill" style="width:100%" id="modalAction">Fermer</button>
-        </div>
-      </div>
-    </div>
 
     <footer class="foot">
       <div class="container">
@@ -1082,9 +969,7 @@
     </div>
 
     <main class="menu-page-content">
-      <div class="container">
-        <div class="menu-categories-grid" id="menuCategoriesGrid">
-        </div>
+      <div class="container" id="menuCategoriesGrid">
       </div>
     </main>
 
@@ -1101,181 +986,171 @@
   </div>
 
   <script>
-    const pexels = {
-      coffee: "https://images.pexels.com/photos/4109748/pexels-photo-4109748.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=600&h=600",
-      brunch: "https://images.pexels.com/photos/9597589/pexels-photo-9597589.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=600&h=600",
-      pastry: "https://images.pexels.com/photos/5663309/pexels-photo-5663309.png?auto=compress&cs=tinysrgb&fit=crop&w=600&h=600",
-      mocktail: "https://images.pexels.com/photos/12335441/pexels-photo-12335441.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=600&h=600",
-      dessert: "https://images.pexels.com/photos/35225700/pexels-photo-35225700.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=600&h=600",
-      juice: "https://images.pexels.com/photos/96974/pexels-photo-96974.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=600&h=600",
-      insta: "https://images.pexels.com/photos/22882239/pexels-photo-22882239.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=600&h=600"
-    };
-
     const menuData = [
       {
         tab: "Café",
         category: "Café Illy & Iced Coffee",
         items: [
-          { name: "ESPRESSO ILLY", price: "DT 6.000 - DT 7.000", img: pexels.coffee },
-          { name: "Cappucin", price: "DT 6.000 - DT 7.000", img: pexels.coffee },
-          { name: "AMERICAN", price: "DT 6.500", img: pexels.coffee },
-          { name: "CAPPUCCINO", price: "DT 4.000 - DT 7.000", img: pexels.coffee },
-          { name: "Café Gourmand x3 macarons", price: "DT 13.000 - DT 14.000", img: pexels.coffee },
-          { name: "MACCHIATO", price: "DT 6.000 - DT 7.000", img: pexels.coffee },
-          { name: "CAFÉ CRÈME", price: "DT 4.000 - DT 7.500", img: pexels.coffee },
-          { name: "Café Turc", price: "DT 8.000 - DT 10.000", img: pexels.coffee },
-          { name: "ICED LATTE", price: "DT 4.000 - DT 12.000", img: pexels.coffee },
-          { name: "ILLY CAPSULE ICED AMERICAN", price: "DT 11.000", img: pexels.coffee },
-          { name: "AFFOGATO", price: "DT 12.000", img: pexels.coffee },
-          { name: "ICED AMERICAN", price: "DT 9.000", img: pexels.coffee },
-          { name: "ICED COFFEE DECAFÉINÉ", price: "DT 11.000", img: pexels.coffee },
-          { name: "ICED MOCHA", price: "DT 13.000", img: pexels.coffee }
+          { name: "ESPRESSO ILLY", price: "DT 6.000 - DT 7.000" },
+          { name: "Cappucin", price: "DT 6.000 - DT 7.000" },
+          { name: "AMERICAN", price: "DT 6.500" },
+          { name: "CAPPUCCINO", price: "DT 4.000 - DT 7.000" },
+          { name: "Café Gourmand x3 macarons", price: "DT 13.000 - DT 14.000" },
+          { name: "MACCHIATO", price: "DT 6.000 - DT 7.000" },
+          { name: "CAFÉ CRÈME", price: "DT 4.000 - DT 7.500" },
+          { name: "Café Turc", price: "DT 8.000 - DT 10.000" },
+          { name: "ICED LATTE", price: "DT 4.000 - DT 12.000" },
+          { name: "ILLY CAPSULE ICED AMERICAN", price: "DT 11.000" },
+          { name: "AFFOGATO", price: "DT 12.000" },
+          { name: "ICED AMERICAN", price: "DT 9.000" },
+          { name: "ICED COFFEE DECAFÉINÉ", price: "DT 11.000" },
+          { name: "ICED MOCHA", price: "DT 13.000" }
         ]
       },
       {
         tab: "Mocktails",
         category: "Mocktails & Mojitos",
         items: [
-          { name: "DIABOLO FRAISE", price: "DT 10.000", img: pexels.mocktail },
-          { name: "DIABOLO MENTHE", price: "DT 10.000", img: pexels.mocktail },
-          { name: "INDIEN", price: "DT 15.000", img: pexels.mocktail },
-          { name: "FRAÎCHEUR BOTANIQUE", price: "DT 15.000", img: pexels.mocktail },
-          { name: "Joséphine Baker Cocktail", price: "DT 17.000", img: pexels.mocktail },
-          { name: "BLUE TROPICAL", price: "DT 15.000", img: pexels.mocktail },
-          { name: "Pina Colada", price: "DT 17.000", img: pexels.mocktail },
-          { name: "MANGO COLADA", price: "DT 18.000", img: pexels.mocktail },
-          { name: "MOCKTAILS DU BARMAN", price: "DT 18.000", img: pexels.mocktail },
-          { name: "VIRGIN MOJITO", price: "DT 15.000", img: pexels.mocktail },
-          { name: "VIRGIN MOJITO Aromatiśé", price: "DT 17.000", img: pexels.mocktail },
-          { name: "MOJITO RED BULL", price: "DT 20.000", img: pexels.mocktail }
+          { name: "DIABOLO FRAISE", price: "DT 10.000" },
+          { name: "DIABOLO MENTHE", price: "DT 10.000" },
+          { name: "INDIEN", price: "DT 15.000" },
+          { name: "FRAÎCHEUR BOTANIQUE", price: "DT 15.000" },
+          { name: "Joséphine Baker Cocktail", price: "DT 17.000" },
+          { name: "BLUE TROPICAL", price: "DT 15.000" },
+          { name: "Pina Colada", price: "DT 17.000" },
+          { name: "MANGO COLADA", price: "DT 18.000" },
+          { name: "MOCKTAILS DU BARMAN", price: "DT 18.000" },
+          { name: "VIRGIN MOJITO", price: "DT 15.000" },
+          { name: "VIRGIN MOJITO Aromatiśé", price: "DT 17.000" },
+          { name: "MOJITO RED BULL", price: "DT 20.000" }
         ]
       },
       {
         tab: "Brunch",
         category: "Brunch, Oeufs & Tartines",
         items: [
-          { name: "BRUNCH DIOR INSTAGRAMMABLE", price: "DT 65.000", img: pexels.brunch },
-          { name: "BRUNCH 2 PERSONNES", price: "DT 55.000", img: pexels.brunch },
-          { name: "LE COMPLET", price: "DT 28.000", img: pexels.brunch },
-          { name: "Oeuf Bénédicte nature", price: "DT 15.000", img: pexels.brunch },
-          { name: "Oeuf Bénédicte jambon", price: "DT 18.000", img: pexels.brunch },
-          { name: "Oeuf Bénédicte Saumon", price: "DT 23.000", img: pexels.brunch },
-          { name: "Oeuf Bénédicte Saumon Avocat", price: "DT 27.000", img: pexels.brunch },
-          { name: "Tartine oeuf brouillée", price: "DT 15.000", img: pexels.brunch },
-          { name: "Tartine oeuf brouillée Saumon frais", price: "DT 18.000", img: pexels.brunch },
-          { name: "Tartine Avocat Tomates Mozzarella", price: "DT 18.000", img: pexels.brunch },
-          { name: "Tartine avocat saumon frais", price: "DT 22.000", img: pexels.brunch },
-          { name: "Assiette Énergie", price: "DT 18.000", img: pexels.brunch },
-          { name: "Délices Matinal", price: "DT 23.000", img: pexels.brunch },
-          { name: "Assiette Brunch Nordique", price: "DT 28.000", img: pexels.brunch },
-          { name: "OMELETTE NATURE", price: "DT 7.000", img: pexels.brunch },
-          { name: "OEUF AU PLAT", price: "DT 7.000", img: pexels.brunch },
-          { name: "2 Oeuf à la Coque", price: "DT 8.000", img: pexels.brunch },
-          { name: "OEUF BROUILLÉE", price: "DT 7.000", img: pexels.brunch },
-          { name: "Omelette Fromage", price: "DT 10.000", img: pexels.brunch },
-          { name: "OMELETTE JAMBON FROMAGE", price: "DT 12.000", img: pexels.brunch },
-          { name: "OMELETTE THON FROMAGE", price: "DT 14.000", img: pexels.brunch },
-          { name: "OMELETTE CHAMPIGNONS", price: "DT 15.000", img: pexels.brunch },
-          { name: "PAIN AU CHOCOLAT", price: "DT 3.500", img: pexels.pastry },
-          { name: "CROISSANT", price: "DT 3.000", img: pexels.pastry },
-          { name: "Croissant Nutella", price: "DT 8.000", img: pexels.pastry },
-          { name: "Croissant fourré à la Pistache & Nutella", price: "DT 9.000", img: pexels.pastry },
-          { name: "Pain au Chocolat Nutella Pistache", price: "DT 9.500", img: pexels.pastry },
-          { name: "Croissant nutella Banane", price: "DT 9.500", img: pexels.pastry }
+          { name: "BRUNCH DIOR INSTAGRAMMABLE", price: "DT 65.000" },
+          { name: "BRUNCH 2 PERSONNES", price: "DT 55.000" },
+          { name: "LE COMPLET", price: "DT 28.000" },
+          { name: "Oeuf Bénédicte nature", price: "DT 15.000" },
+          { name: "Oeuf Bénédicte jambon", price: "DT 18.000" },
+          { name: "Oeuf Bénédicte Saumon", price: "DT 23.000" },
+          { name: "Oeuf Bénédicte Saumon Avocat", price: "DT 27.000" },
+          { name: "Tartine oeuf brouillée", price: "DT 15.000" },
+          { name: "Tartine oeuf brouillée Saumon frais", price: "DT 18.000" },
+          { name: "Tartine Avocat Tomates Mozzarella", price: "DT 18.000" },
+          { name: "Tartine avocat saumon frais", price: "DT 22.000" },
+          { name: "Assiette Énergie", price: "DT 18.000" },
+          { name: "Délices Matinal", price: "DT 23.000" },
+          { name: "Assiette Brunch Nordique", price: "DT 28.000" },
+          { name: "OMELETTE NATURE", price: "DT 7.000" },
+          { name: "OEUF AU PLAT", price: "DT 7.000" },
+          { name: "2 Oeuf à la Coque", price: "DT 8.000" },
+          { name: "OEUF BROUILLÉE", price: "DT 7.000" },
+          { name: "Omelette Fromage", price: "DT 10.000" },
+          { name: "OMELETTE JAMBON FROMAGE", price: "DT 12.000" },
+          { name: "OMELETTE THON FROMAGE", price: "DT 14.000" },
+          { name: "OMELETTE CHAMPIGNONS", price: "DT 15.000" },
+          { name: "PAIN AU CHOCOLAT", price: "DT 3.500" },
+          { name: "CROISSANT", price: "DT 3.000" },
+          { name: "Croissant Nutella", price: "DT 8.000" },
+          { name: "Croissant fourré à la Pistache & Nutella", price: "DT 9.000" },
+          { name: "Pain au Chocolat Nutella Pistache", price: "DT 9.500" },
+          { name: "Croissant nutella Banane", price: "DT 9.500" }
         ]
       },
       {
         tab: "Douceurs",
         category: "Crêpes, Gaufres & Pancakes",
         items: [
-          { name: "Brioche Pistache & Fraise", price: "DT 21.000", img: pexels.pastry },
-          { name: "Brioche Nutella", price: "DT 19.000", img: pexels.pastry },
-          { name: "Brioche Speculoos", price: "DT 20.000", img: pexels.pastry },
-          { name: "Crêpes Sucre / Miel", price: "DT 10.000 - DT 12.000", img: pexels.pastry },
-          { name: "Crêpes Nutella", price: "DT 14.000", img: pexels.pastry },
-          { name: "Crêpe Nutella Fraise", price: "DT 16.000", img: pexels.pastry },
-          { name: "Crepe Nutella Speculoos", price: "DT 16.000", img: pexels.pastry },
-          { name: "Crêpe Nutella Banane", price: "DT 16.000 - DT 19.000", img: pexels.pastry },
-          { name: "Crêpes Nutella OREO", price: "DT 16.000", img: pexels.pastry },
-          { name: "Crêpes Nutella Amandes effilées", price: "DT 16.000", img: pexels.pastry },
-          { name: "Crêpe Caramel Beurre salée", price: "DT 15.000 - DT 18.000", img: pexels.pastry },
-          { name: "Crêpes DUBAÏ", price: "DT 19.000", img: pexels.pastry },
-          { name: "Trio de Pancakes", price: "DT 10.000 - DT 12.000", img: pexels.pastry },
-          { name: "Trio Pancakes Caramel Beurre Salée", price: "DT 13.000 - DT 16.000", img: pexels.pastry },
-          { name: "Trio de Pancakes Nutella", price: "DT 14.000", img: pexels.pastry },
-          { name: "Trio de Pancakes Nutella amande effilée", price: "DT 15.000", img: pexels.pastry },
-          { name: "Trio de pancakes KINDER BUENO", price: "DT 16.000", img: pexels.pastry },
-          { name: "Trio de Pancakes Nutella KINDER", price: "DT 16.000 - DT 16.000", img: pexels.pastry },
-          { name: "Trio de Pancakes Nutella Speculoos", price: "DT 16.000", img: pexels.pastry },
-          { name: "Trio de Pancakes Nutella Banane", price: "DT 18.000", img: pexels.pastry },
-          { name: "Gaufre Sucre", price: "DT 10.000 - DT 12.000", img: pexels.pastry },
-          { name: "Gaufre Nutella", price: "DT 15.000", img: pexels.pastry },
-          { name: "Gaufre Nutella Boule de Glace", price: "DT 18.000", img: pexels.pastry },
-          { name: "Pain perdu Miel ou Sirop d'érable", price: "DT 14.000 - DT 17.000", img: pexels.pastry },
-          { name: "Pain Perdu Caramel beurre salée", price: "DT 13.000 - DT 16.000", img: pexels.pastry },
-          { name: "Pain Perdu Nutella", price: "DT 15.000 - DT 18.000", img: pexels.pastry },
-          { name: "Pain Perdu Fruits de saison", price: "DT 15.000", img: pexels.pastry },
-          { name: "Pain Perdu DUBAI", price: "DT 17.000 - DT 20.000", img: pexels.pastry }
+          { name: "Brioche Pistache & Fraise", price: "DT 21.000" },
+          { name: "Brioche Nutella", price: "DT 19.000" },
+          { name: "Brioche Speculoos", price: "DT 20.000" },
+          { name: "Crêpes Sucre / Miel", price: "DT 10.000 - DT 12.000" },
+          { name: "Crêpes Nutella", price: "DT 14.000" },
+          { name: "Crêpe Nutella Fraise", price: "DT 16.000" },
+          { name: "Crepe Nutella Speculoos", price: "DT 16.000" },
+          { name: "Crêpe Nutella Banane", price: "DT 16.000 - DT 19.000" },
+          { name: "Crêpes Nutella OREO", price: "DT 16.000" },
+          { name: "Crêpes Nutella Amandes effilées", price: "DT 16.000" },
+          { name: "Crêpe Caramel Beurre salée", price: "DT 15.000 - DT 18.000" },
+          { name: "Crêpes DUBAÏ", price: "DT 19.000" },
+          { name: "Trio de Pancakes", price: "DT 10.000 - DT 12.000" },
+          { name: "Trio Pancakes Caramel Beurre Salée", price: "DT 13.000 - DT 16.000" },
+          { name: "Trio de Pancakes Nutella", price: "DT 14.000" },
+          { name: "Trio de Pancakes Nutella amande effilée", price: "DT 15.000" },
+          { name: "Trio de pancakes KINDER BUENO", price: "DT 16.000" },
+          { name: "Trio de Pancakes Nutella KINDER", price: "DT 16.000 - DT 16.000" },
+          { name: "Trio de Pancakes Nutella Speculoos", price: "DT 16.000" },
+          { name: "Trio de Pancakes Nutella Banane", price: "DT 18.000" },
+          { name: "Gaufre Sucre", price: "DT 10.000 - DT 12.000" },
+          { name: "Gaufre Nutella", price: "DT 15.000" },
+          { name: "Gaufre Nutella Boule de Glace", price: "DT 18.000" },
+          { name: "Pain perdu Miel ou Sirop d'érable", price: "DT 14.000 - DT 17.000" },
+          { name: "Pain Perdu Caramel beurre salée", price: "DT 13.000 - DT 16.000" },
+          { name: "Pain Perdu Nutella", price: "DT 15.000 - DT 18.000" },
+          { name: "Pain Perdu Fruits de saison", price: "DT 15.000" },
+          { name: "Pain Perdu DUBAI", price: "DT 17.000 - DT 20.000" }
         ]
       },
       {
         tab: "Desserts",
         category: "Pâtisserie Fine & Desserts",
         items: [
-          { name: "Le Cookie GLACÉE", price: "DT 25.000", img: pexels.dessert },
-          { name: "Mango Riviera", price: "DT 16.000", img: pexels.dessert },
-          { name: "Coco Passion Pampelonne", price: "DT 17.000", img: pexels.dessert },
-          { name: "Pistache Impériale", price: "DT 13.000", img: pexels.dessert },
-          { name: "Dubai Glacé", price: "DT 24.000", img: pexels.dessert },
-          { name: "Citron d'Azur", price: "DT 15.000", img: pexels.dessert },
-          { name: "Rocher de la Côte d'Azur", price: "DT 23.000", img: pexels.dessert },
-          { name: "Cheesecake Framboise", price: "DT 16.000", img: pexels.dessert },
-          { name: "Cheesecake Speculoos", price: "DT 16.000", img: pexels.dessert },
-          { name: "Cheesecake Pistache", price: "DT 17.000", img: pexels.dessert },
-          { name: "FONDANT AU CHOCOLAT (maison)", price: "DT 15.000", img: pexels.dessert },
-          { name: "Fondant Kinder (maison) avec boule de GLACE", price: "DT 16.000", img: pexels.dessert },
-          { name: "FONDANT À LA PISTACHE (maison)", price: "DT 17.000", img: pexels.dessert },
-          { name: "TIRAMISU CLASSIQUE", price: "DT 15.000", img: pexels.dessert },
-          { name: "TIRAMISU NUTELLA DUBAÏ", price: "DT 18.000", img: pexels.dessert },
-          { name: "ASSIETTE DE FRUITS FRAIS", price: "DT 27.000", img: pexels.dessert },
-          { name: "Macarons", price: "DT 3.000", img: pexels.dessert },
-          { name: "LE ROCHER", price: "DT 17.000", img: pexels.dessert },
-          { name: "Pistachio Ruby", price: "DT 17.000", img: pexels.dessert },
-          { name: "DOME CHOCOLAT BLANC PISTACHE", price: "DT 18.000", img: pexels.dessert },
-          { name: "FORÊT NOIRE", price: "DT 17.000", img: pexels.dessert },
-          { name: "TARTE SPECULOOS", price: "DT 18.000", img: pexels.dessert },
-          { name: "TARTE MYRTILLES", price: "DT 16.000", img: pexels.dessert },
-          { name: "TARTE PISTACHE", price: "DT 18.000", img: pexels.dessert },
-          { name: "PATISSERIE DU JOUR", price: "DT 16.000", img: pexels.dessert }
+          { name: "Le Cookie GLACÉE", price: "DT 25.000" },
+          { name: "Mango Riviera", price: "DT 16.000" },
+          { name: "Coco Passion Pampelonne", price: "DT 17.000" },
+          { name: "Pistache Impériale", price: "DT 13.000" },
+          { name: "Dubai Glacé", price: "DT 24.000" },
+          { name: "Citron d'Azur", price: "DT 15.000" },
+          { name: "Rocher de la Côte d'Azur", price: "DT 23.000" },
+          { name: "Cheesecake Framboise", price: "DT 16.000" },
+          { name: "Cheesecake Speculoos", price: "DT 16.000" },
+          { name: "Cheesecake Pistache", price: "DT 17.000" },
+          { name: "FONDANT AU CHOCOLAT (maison)", price: "DT 15.000" },
+          { name: "Fondant Kinder (maison) avec boule de GLACE", price: "DT 16.000" },
+          { name: "FONDANT À LA PISTACHE (maison)", price: "DT 17.000" },
+          { name: "TIRAMISU CLASSIQUE", price: "DT 15.000" },
+          { name: "TIRAMISU NUTELLA DUBAÏ", price: "DT 18.000" },
+          { name: "ASSIETTE DE FRUITS FRAIS", price: "DT 27.000" },
+          { name: "Macarons", price: "DT 3.000" },
+          { name: "LE ROCHER", price: "DT 17.000" },
+          { name: "Pistachio Ruby", price: "DT 17.000" },
+          { name: "DOME CHOCOLAT BLANC PISTACHE", price: "DT 18.000" },
+          { name: "FORÊT NOIRE", price: "DT 17.000" },
+          { name: "TARTE SPECULOOS", price: "DT 18.000" },
+          { name: "TARTE MYRTILLES", price: "DT 16.000" },
+          { name: "TARTE PISTACHE", price: "DT 18.000" },
+          { name: "PATISSERIE DU JOUR", price: "DT 16.000" }
         ]
       },
       {
         tab: "Jus",
         category: "Jus Frais & Chocolats",
         items: [
-          { name: "FRESH LEMON MINT", price: "DT 15.000", img: pexels.juice },
-          { name: "Orange", price: "DT 10.000", img: pexels.juice },
-          { name: "Citronnade", price: "DT 9.000", img: pexels.juice },
-          { name: "Fraise", price: "DT 9.000", img: pexels.juice },
-          { name: "Ananas Goyave Kiwi", price: "DT 10.000", img: pexels.juice },
-          { name: "CITRONNADE MENTHE", price: "DT 10.000", img: pexels.juice },
-          { name: "Citronnade Fraise", price: "DT 10.000", img: pexels.juice },
-          { name: "Fraise Banane", price: "DT 15.000", img: pexels.juice },
-          { name: "Chocolat au lait", price: "DT 8.000", img: pexels.juice },
-          { name: "Chocolat Chaud Classique", price: "DT 10.000", img: pexels.juice },
-          { name: "Iced Chocolat", price: "DT 11.000", img: pexels.juice },
-          { name: "Chocolat chaud & MARSHMALLOW", price: "DT 15.000", img: pexels.juice }
+          { name: "FRESH LEMON MINT", price: "DT 15.000" },
+          { name: "Orange", price: "DT 10.000" },
+          { name: "Citronnade", price: "DT 9.000" },
+          { name: "Fraise", price: "DT 9.000" },
+          { name: "Ananas Goyave Kiwi", price: "DT 10.000" },
+          { name: "CITRONNADE MENTHE", price: "DT 10.000" },
+          { name: "Citronnade Fraise", price: "DT 10.000" },
+          { name: "Fraise Banane", price: "DT 15.000" },
+          { name: "Chocolat au lait", price: "DT 8.000" },
+          { name: "Chocolat Chaud Classique", price: "DT 10.000" },
+          { name: "Iced Chocolat", price: "DT 11.000" },
+          { name: "Chocolat chaud & MARSHMALLOW", price: "DT 15.000" }
         ]
       },
       {
         tab: "Insta",
         category: "Expériences Instagrammables",
         items: [
-          { name: "LATTE INSTAGRAMMABLE DIOR", price: "DT 15.000", img: pexels.insta },
-          { name: "CHOCOLAT CHAUD OU FROID Instagrammable", price: "DT 15.000", img: pexels.insta },
-          { name: "GOURMAND INSTAGRAMMABLE", price: "DT 21.000", img: pexels.insta },
-          { name: "THÉ GOURMAND INSTAGRAMMABLE", price: "DT 25.000", img: pexels.insta },
-          { name: "L'expérience INSTA 2 PERS", price: "DT 35.000", img: pexels.insta }
+          { name: "LATTE INSTAGRAMMABLE DIOR", price: "DT 15.000" },
+          { name: "CHOCOLAT CHAUD OU FROID Instagrammable", price: "DT 15.000" },
+          { name: "GOURMAND INSTAGRAMMABLE", price: "DT 21.000" },
+          { name: "THÉ GOURMAND INSTAGRAMMABLE", price: "DT 25.000" },
+          { name: "L'expérience INSTA 2 PERS", price: "DT 35.000" }
         ]
       }
     ];
@@ -1285,14 +1160,6 @@
     const tabsEl      = document.getElementById('menuTabsScrollContainer');
     const gridEl      = document.getElementById('menuCategoriesGrid');
     const stickyHeaderGroup = document.getElementById('menuStickyHeaderGroup');
-
-    const itemModal = document.getElementById('itemModal');
-    const modalImg = document.getElementById('modalImg');
-    const modalTitle = document.getElementById('modalTitle');
-    const modalPrice = document.getElementById('modalPrice');
-    const modalDesc = document.getElementById('modalDesc');
-    const modalClose = document.getElementById('modalClose');
-    const modalAction = document.getElementById('modalAction');
 
     let activeCat = 0;
     let isScrollingClick = false;
@@ -1306,23 +1173,19 @@
 
       gridEl.innerHTML = menuData.map((g, gi) => `
         <section class="menu-cat-section" id="cat-sec-${gi}" data-ci="${gi}">
-          <div class="menu-cat-title-bar">${g.category}</div>
-          <div class="menu-cat-items">
-            ${g.items.map((item, ii) => `
-              <div class="menu-item-row" onclick="openItemModal(${gi}, ${ii})">
-                <div class="menu-item-thumb">
-                  <img src="${item.img}" alt="${item.name}" onerror="this.onerror=null; this.src='https://images.pexels.com/photos/101533/pexels-photo-101533.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=200&h=200'" loading="lazy">
+          <div class="menu-card">
+            <div class="category-header">
+              <h2 class="serif">${g.category}</h2>
+              <div class="category-line"></div>
+            </div>
+            <div class="menu-list">
+              ${g.items.map(item => `
+                <div class="item-row">
+                  <span class="item-name">${item.name}</span>
+                  <span class="item-price">${item.price}</span>
                 </div>
-                <div class="menu-item-info">
-                  <div class="menu-item-header">
-                    <span class="menu-item-name">
-                      ${item.name}
-                    </span>
-                    <span class="menu-item-price">${item.price}</span>
-                  </div>
-                </div>
-              </div>
-            `).join('')}
+              `).join('')}
+            </div>
           </div>
         </section>
       `).join('');
@@ -1403,7 +1266,7 @@
       let currentActiveIdx = -1;
       sections.forEach((sec, i) => {
         const top = sec.getBoundingClientRect().top;
-        if (top <= offset + 10) {
+        if (top <= offset + 50) {
           currentActiveIdx = i;
         }
       });
@@ -1435,27 +1298,6 @@
     }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
 
     document.querySelectorAll('.section').forEach(sec => revealObserver.observe(sec));
-
-    function openItemModal(gi, ii) {
-      const item = menuData[gi].items[ii];
-      modalImg.src = item.img || 'https://images.pexels.com/photos/101533/pexels-photo-101533.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=600&h=600';
-      modalTitle.textContent = item.name;
-      modalPrice.textContent = item.price;
-      modalDesc.textContent = "Découvrez l'excellence de nos créations artisanales, préparées avec passion pour un moment d'exception.";
-      itemModal.classList.add('active');
-      document.body.style.overflow = 'hidden';
-    }
-
-    function closeItemModal() {
-      itemModal.classList.remove('active');
-      document.body.style.overflow = '';
-    }
-
-    modalClose.addEventListener('click', closeItemModal);
-    modalAction.addEventListener('click', closeItemModal);
-    itemModal.addEventListener('click', (e) => {
-      if (e.target === itemModal) closeItemModal();
-    });
 
     buildMenuPage();
   </script>
