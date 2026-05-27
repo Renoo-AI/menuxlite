@@ -3,8 +3,25 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Saint Tropez, La Marsa. Brunch, café Illy, douceurs et mocktails. Menu digital par Menux Lite.">
-  <title>Saint Tropez — La Marsa</title>
+  <title>Saint Tropez — La Marsa | Brunch & Pâtisserie Fine</title>
+
+  <!-- SEO & Open Graph -->
+  <meta name="description" content="Découvrez Saint Tropez à La Marsa. L'élégance d'une escale sur la Riviera tunisienne. Brunch signature, café Illy, douceurs et mocktails botaniques.">
+  <meta name="keywords" content="Saint Tropez, La Marsa, Brunch Tunis, Café Illy, Pâtisserie Fine, Riviera, Menu Digital">
+  <meta name="robots" content="index, follow">
+
+  <meta property="og:title" content="Saint Tropez — La Marsa | Brunch & Pâtisserie Fine">
+  <meta property="og:description" content="L'élégance de la Riviera à La Marsa. Brunch signature, café Illy et douceurs artisanales.">
+  <meta property="og:image" content="https://images.pexels.com/photos/16887243/pexels-photo-16887243.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=1200&h=630">
+  <meta property="og:url" content="https://menux.lite/saint-tropez">
+  <meta property="og:type" content="website">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Saint Tropez — La Marsa">
+  <meta name="twitter:description" content="Brunch signature et Pâtisserie Fine à La Marsa.">
+  <meta name="twitter:image" content="https://images.pexels.com/photos/16887243/pexels-photo-16887243.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=1200&h=630">
+
+  <link rel="canonical" href="https://menux.lite/saint-tropez">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -28,17 +45,6 @@
       --transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
-    [data-theme="dark"] {
-      --cream: #0D0907;
-      --linen: #14100E;
-      --white: #110D0B;
-      --text: #E8E2DD;
-      --muted: #9E9088;
-      --light: #6B5E56;
-      --border: rgba(232, 226, 221, 0.08);
-      --shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
-    }
-
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     html { scroll-behavior: smooth; }
@@ -49,7 +55,6 @@
       color: var(--text);
       line-height: 1.6;
       -webkit-font-smoothing: antialiased;
-      transition: background-color 0.3s ease, color 0.3s ease;
     }
 
     .view-container {
@@ -170,35 +175,6 @@
       z-index: 10;
       padding: 1.4rem 0;
       border-bottom: 1px solid rgba(255,255,255,0.12);
-    }
-
-    .topbar .container {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .theme-toggle {
-      width: 40px;
-      height: 40px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 50%;
-      background: rgba(255,255,255,0.1);
-      color: #fff;
-      border: 1px solid rgba(255,255,255,0.2);
-      cursor: pointer;
-      transition: var(--transition);
-    }
-
-    .theme-toggle:hover {
-      background: rgba(255,255,255,0.2);
-    }
-
-    [data-theme="dark"] .theme-toggle {
-      background: var(--gold);
-      border-color: var(--gold);
     }
 
     .brand {
@@ -844,7 +820,6 @@
       white-space: nowrap;
     }
 
-
     .menu-page-footer {
       background: var(--linen);
       border-top: 1px solid var(--border);
@@ -896,16 +871,13 @@
   <div id="landing-view" class="view-container">
 
     <header class="topbar">
-      <div class="container">
+      <div class="container" style="display: flex; justify-content: space-between; align-items: center;">
         <div class="brand">Saint Tropez <small>La Marsa</small></div>
-        <button class="theme-toggle" id="themeToggle" aria-label="Changer de thème">
-          <i class="fa-solid fa-moon"></i>
-        </button>
       </div>
     </header>
 
     <section class="hero">
-      <img src="https://images.unsplash.com/photo-1510707577719-ae7c14805e3a?q=80&w=1600&auto=format&fit=crop" alt="Saint Tropez La Marsa" fetchpriority="high">
+      <img src="https://images.pexels.com/photos/16887243/pexels-photo-16887243.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=1600&h=1200" alt="Saint Tropez La Marsa" fetchpriority="high">
       <div class="hero-inner">
         <span class="tag" style="color: rgba(255,255,255,0.7);">Brunch & Pâtisserie Fine</span>
         <h1>Saint Tropez</h1>
@@ -940,7 +912,7 @@
 
           <article class="card">
             <div class="card-img">
-              <img src="https://images.unsplash.com/photo-1525351484163-7529414344d8?q=80&w=700&auto=format&fit=crop" alt="Brunch Dior Instagrammable" loading="lazy">
+              <img src="https://images.pexels.com/photos/9597589/pexels-photo-9597589.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=700&h=700" alt="Brunch Dior Instagrammable" loading="lazy">
             </div>
             <div class="card-body">
               <h3>Brunch Dior Instagrammable</h3>
@@ -951,7 +923,7 @@
 
           <article class="card">
             <div class="card-img">
-              <img src="https://images.unsplash.com/photo-1600431521340-491eca880813?q=80&w=700&auto=format&fit=crop" alt="Brioche Pistache & Fraise" loading="lazy">
+              <img src="https://images.pexels.com/photos/5663309/pexels-photo-5663309.png?auto=compress&cs=tinysrgb&fit=crop&w=700&h=700" alt="Brioche Pistache & Fraise" loading="lazy">
             </div>
             <div class="card-body">
               <h3>Brioche Pistache &amp; Fraise</h3>
@@ -962,7 +934,7 @@
 
           <article class="card">
             <div class="card-img">
-              <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?q=80&w=700&auto=format&fit=crop" alt="Mango Riviera" loading="lazy">
+              <img src="https://images.pexels.com/photos/9840174/pexels-photo-9840174.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=700&h=700" alt="Mango Riviera" loading="lazy">
             </div>
             <div class="card-body">
               <h3>Mango Riviera</h3>
@@ -973,7 +945,7 @@
 
           <article class="card">
             <div class="card-img">
-              <img src="https://images.unsplash.com/photo-1551024601-bec78aea704b?q=80&w=700&auto=format&fit=crop" alt="Dubaï Glacé" loading="lazy">
+              <img src="https://images.pexels.com/photos/35225700/pexels-photo-35225700.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=700&h=700" alt="Dubaï Glacé" loading="lazy">
             </div>
             <div class="card-body">
               <h3>Dubaï Glacé</h3>
@@ -984,7 +956,7 @@
 
           <article class="card">
             <div class="card-img">
-              <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?q=80&w=700&auto=format&fit=crop" alt="Iced Mocha" loading="lazy">
+              <img src="https://images.pexels.com/photos/31306510/pexels-photo-31306510.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=700&h=700" alt="Iced Mocha" loading="lazy">
             </div>
             <div class="card-body">
               <h3>Iced Mocha</h3>
@@ -995,7 +967,7 @@
 
           <article class="card">
             <div class="card-img">
-              <img src="https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?q=80&w=700&auto=format&fit=crop" alt="Virgin Mojito" loading="lazy">
+              <img src="https://images.pexels.com/photos/33129959/pexels-photo-33129959.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=700&h=700" alt="Virgin Mojito" loading="lazy">
             </div>
             <div class="card-body">
               <h3>Virgin Mojito</h3>
@@ -1129,171 +1101,181 @@
   </div>
 
   <script>
+    const pexels = {
+      coffee: "https://images.pexels.com/photos/4109748/pexels-photo-4109748.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=600&h=600",
+      brunch: "https://images.pexels.com/photos/9597589/pexels-photo-9597589.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=600&h=600",
+      pastry: "https://images.pexels.com/photos/5663309/pexels-photo-5663309.png?auto=compress&cs=tinysrgb&fit=crop&w=600&h=600",
+      mocktail: "https://images.pexels.com/photos/12335441/pexels-photo-12335441.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=600&h=600",
+      dessert: "https://images.pexels.com/photos/35225700/pexels-photo-35225700.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=600&h=600",
+      juice: "https://images.pexels.com/photos/96974/pexels-photo-96974.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=600&h=600",
+      insta: "https://images.pexels.com/photos/22882239/pexels-photo-22882239.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=600&h=600"
+    };
+
     const menuData = [
       {
         tab: "Café",
         category: "Café Illy & Iced Coffee",
         items: [
-          { name: "ESPRESSO ILLY", price: "DT 6.000 - DT 7.000", img: "https://images.unsplash.com/photo-1510707577719-ae7c14805e3a?q=80&w=1200&auto=format&fit=crop" },
-          { name: "Cappucin", price: "DT 6.000 - DT 7.000", img: "https://images.unsplash.com/photo-1534778101976-62847782c213?q=80&w=1200&auto=format&fit=crop" },
-          { name: "AMERICAN", price: "DT 6.500", img: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?q=80&w=1200&auto=format&fit=crop" },
-          { name: "CAPPUCCINO", price: "DT 4.000 - DT 7.000", img: "https://images.unsplash.com/photo-1534778101976-62847782c213?q=80&w=1200&auto=format&fit=crop" },
-          { name: "Café Gourmand x3 macarons", price: "DT 13.000 - DT 14.000", img: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?q=80&w=1200&auto=format&fit=crop" },
-          { name: "MACCHIATO", price: "DT 6.000 - DT 7.000", img: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?q=80&w=1200&auto=format&fit=crop" },
-          { name: "CAFÉ CRÈME", price: "DT 4.000 - DT 7.500", img: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?q=80&w=1200&auto=format&fit=crop" },
-          { name: "Café Turc", price: "DT 8.000 - DT 10.000", img: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?q=80&w=1200&auto=format&fit=crop" },
-          { name: "ICED LATTE", price: "DT 4.000 - DT 12.000", img: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?q=80&w=1200&auto=format&fit=crop" },
-          { name: "ILLY CAPSULE ICED AMERICAN", price: "DT 11.000", img: "https://images.unsplash.com/photo-1510707577719-ae7c14805e3a?q=80&w=1200&auto=format&fit=crop" },
-          { name: "AFFOGATO", price: "DT 12.000", img: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?q=80&w=1200&auto=format&fit=crop" },
-          { name: "ICED AMERICAN", price: "DT 9.000", img: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?q=80&w=1200&auto=format&fit=crop" },
-          { name: "ICED COFFEE DECAFÉINÉ", price: "DT 11.000", img: "https://images.unsplash.com/photo-1517701604599-bb29b565090c?q=80&w=1200&auto=format&fit=crop" },
-          { name: "ICED MOCHA", price: "DT 13.000", img: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?q=80&w=1200&auto=format&fit=crop" }
+          { name: "ESPRESSO ILLY", price: "DT 6.000 - DT 7.000", img: pexels.coffee },
+          { name: "Cappucin", price: "DT 6.000 - DT 7.000", img: pexels.coffee },
+          { name: "AMERICAN", price: "DT 6.500", img: pexels.coffee },
+          { name: "CAPPUCCINO", price: "DT 4.000 - DT 7.000", img: pexels.coffee },
+          { name: "Café Gourmand x3 macarons", price: "DT 13.000 - DT 14.000", img: pexels.coffee },
+          { name: "MACCHIATO", price: "DT 6.000 - DT 7.000", img: pexels.coffee },
+          { name: "CAFÉ CRÈME", price: "DT 4.000 - DT 7.500", img: pexels.coffee },
+          { name: "Café Turc", price: "DT 8.000 - DT 10.000", img: pexels.coffee },
+          { name: "ICED LATTE", price: "DT 4.000 - DT 12.000", img: pexels.coffee },
+          { name: "ILLY CAPSULE ICED AMERICAN", price: "DT 11.000", img: pexels.coffee },
+          { name: "AFFOGATO", price: "DT 12.000", img: pexels.coffee },
+          { name: "ICED AMERICAN", price: "DT 9.000", img: pexels.coffee },
+          { name: "ICED COFFEE DECAFÉINÉ", price: "DT 11.000", img: pexels.coffee },
+          { name: "ICED MOCHA", price: "DT 13.000", img: pexels.coffee }
         ]
       },
       {
         tab: "Mocktails",
         category: "Mocktails & Mojitos",
         items: [
-          { name: "DIABOLO FRAISE", price: "DT 10.000", img: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?q=80&w=1200&auto=format&fit=crop" },
-          { name: "DIABOLO MENTHE", price: "DT 10.000", img: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?q=80&w=1200&auto=format&fit=crop" },
-          { name: "INDIEN", price: "DT 15.000", img: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?q=80&w=1200&auto=format&fit=crop" },
-          { name: "FRAÎCHEUR BOTANIQUE", price: "DT 15.000", img: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?q=80&w=1200&auto=format&fit=crop" },
-          { name: "Joséphine Baker Cocktail", price: "DT 17.000", img: "https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?q=80&w=1200&auto=format&fit=crop" },
-          { name: "BLUE TROPICAL", price: "DT 15.000", img: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?q=80&w=1200&auto=format&fit=crop" },
-          { name: "Pina Colada", price: "DT 17.000", img: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?q=80&w=1200&auto=format&fit=crop" },
-          { name: "MANGO COLADA", price: "DT 18.000", img: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?q=80&w=1200&auto=format&fit=crop" },
-          { name: "MOCKTAILS DU BARMAN", price: "DT 18.000", img: "https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?q=80&w=1200&auto=format&fit=crop" },
-          { name: "VIRGIN MOJITO", price: "DT 15.000", img: "https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?q=80&w=1200&auto=format&fit=crop" },
-          { name: "VIRGIN MOJITO Aromatiśé", price: "DT 17.000", img: "https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?q=80&w=1200&auto=format&fit=crop" },
-          { name: "MOJITO RED BULL", price: "DT 20.000", img: "https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?q=80&w=1200&auto=format&fit=crop" }
+          { name: "DIABOLO FRAISE", price: "DT 10.000", img: pexels.mocktail },
+          { name: "DIABOLO MENTHE", price: "DT 10.000", img: pexels.mocktail },
+          { name: "INDIEN", price: "DT 15.000", img: pexels.mocktail },
+          { name: "FRAÎCHEUR BOTANIQUE", price: "DT 15.000", img: pexels.mocktail },
+          { name: "Joséphine Baker Cocktail", price: "DT 17.000", img: pexels.mocktail },
+          { name: "BLUE TROPICAL", price: "DT 15.000", img: pexels.mocktail },
+          { name: "Pina Colada", price: "DT 17.000", img: pexels.mocktail },
+          { name: "MANGO COLADA", price: "DT 18.000", img: pexels.mocktail },
+          { name: "MOCKTAILS DU BARMAN", price: "DT 18.000", img: pexels.mocktail },
+          { name: "VIRGIN MOJITO", price: "DT 15.000", img: pexels.mocktail },
+          { name: "VIRGIN MOJITO Aromatiśé", price: "DT 17.000", img: pexels.mocktail },
+          { name: "MOJITO RED BULL", price: "DT 20.000", img: pexels.mocktail }
         ]
       },
       {
         tab: "Brunch",
         category: "Brunch, Oeufs & Tartines",
         items: [
-          { name: "BRUNCH DIOR INSTAGRAMMABLE", price: "DT 65.000", img: "https://images.unsplash.com/photo-1525351484163-7529414344d8?q=80&w=1200&auto=format&fit=crop" },
-          { name: "BRUNCH 2 PERSONNES", price: "DT 55.000", img: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?q=80&w=1200&auto=format&fit=crop" },
-          { name: "LE COMPLET", price: "DT 28.000", img: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?q=80&w=1200&auto=format&fit=crop" },
-          { name: "Oeuf Bénédicte nature", price: "DT 15.000", img: "https://images.unsplash.com/photo-1525351484163-7529414344d8?q=80&w=1200&auto=format&fit=crop" },
-          { name: "Oeuf Bénédicte jambon", price: "DT 18.000", img: "https://images.unsplash.com/photo-1525351484163-7529414344d8?q=80&w=1200&auto=format&fit=crop" },
-          { name: "Oeuf Bénédicte Saumon", price: "DT 23.000", img: "https://images.unsplash.com/photo-1525351484163-7529414344d8?q=80&w=1200&auto=format&fit=crop" },
-          { name: "Oeuf Bénédicte Saumon Avocat", price: "DT 27.000", img: "https://images.unsplash.com/photo-1525351484163-7529414344d8?q=80&w=1200&auto=format&fit=crop" },
-          { name: "Tartine oeuf brouillée", price: "DT 15.000", img: "https://images.unsplash.com/photo-1525351484163-7529414344d8?q=80&w=1200&auto=format&fit=crop" },
-          { name: "Tartine oeuf brouillée Saumon frais", price: "DT 18.000", img: "https://images.unsplash.com/photo-1525351484163-7529414344d8?q=80&w=1200&auto=format&fit=crop" },
-          { name: "Tartine Avocat Tomates Mozzarella", price: "DT 18.000", img: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?q=80&w=1200&auto=format&fit=crop" },
-          { name: "Tartine avocat saumon frais", price: "DT 22.000", img: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?q=80&w=1200&auto=format&fit=crop" },
-          { name: "Assiette Énergie", price: "DT 18.000", img: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?q=80&w=1200&auto=format&fit=crop" },
-          { name: "Délices Matinal", price: "DT 23.000", img: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?q=80&w=1200&auto=format&fit=crop" },
-          { name: "Assiette Brunch Nordique", price: "DT 28.000", img: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?q=80&w=1200&auto=format&fit=crop" },
-          { name: "OMELETTE NATURE", price: "DT 7.000", img: "https://images.unsplash.com/photo-1525351484163-7529414344d8?q=80&w=1200&auto=format&fit=crop" },
-          { name: "OEUF AU PLAT", price: "DT 7.000", img: "https://images.unsplash.com/photo-1525351484163-7529414344d8?q=80&w=1200&auto=format&fit=crop" },
-          { name: "2 Oeuf à la Coque", price: "DT 8.000", img: "https://images.unsplash.com/photo-1525351484163-7529414344d8?q=80&w=1200&auto=format&fit=crop" },
-          { name: "OEUF BROUILLÉE", price: "DT 7.000", img: "https://images.unsplash.com/photo-1525351484163-7529414344d8?q=80&w=1200&auto=format&fit=crop" },
-          { name: "Omelette Fromage", price: "DT 10.000", img: "https://images.unsplash.com/photo-1525351484163-7529414344d8?q=80&w=1200&auto=format&fit=crop" },
-          { name: "OMELETTE JAMBON FROMAGE", price: "DT 12.000", img: "https://images.unsplash.com/photo-1525351484163-7529414344d8?q=80&w=1200&auto=format&fit=crop" },
-          { name: "OMELETTE THON FROMAGE", price: "DT 14.000", img: "https://images.unsplash.com/photo-1525351484163-7529414344d8?q=80&w=1200&auto=format&fit=crop" },
-          { name: "OMELETTE CHAMPIGNONS", price: "DT 15.000", img: "https://images.unsplash.com/photo-1525351484163-7529414344d8?q=80&w=1200&auto=format&fit=crop" },
-          { name: "PAIN AU CHOCOLAT", price: "DT 3.500", img: "https://images.unsplash.com/photo-1555507036-ab1f4038808a?q=80&w=1200&auto=format&fit=crop" },
-          { name: "CROISSANT", price: "DT 3.000", img: "https://images.unsplash.com/photo-1555507036-ab1f4038808a?q=80&w=1200&auto=format&fit=crop" },
-          { name: "Croissant Nutella", price: "DT 8.000", img: "https://images.unsplash.com/photo-1555507036-ab1f4038808a?q=80&w=1200&auto=format&fit=crop" },
-          { name: "Croissant fourré à la Pistache & Nutella", price: "DT 9.000", img: "https://images.unsplash.com/photo-1555507036-ab1f4038808a?q=80&w=1200&auto=format&fit=crop" },
-          { name: "Pain au Chocolat Nutella Pistache", price: "DT 9.500", img: "https://images.unsplash.com/photo-1555507036-ab1f4038808a?q=80&w=1200&auto=format&fit=crop" },
-          { name: "Croissant nutella Banane", price: "DT 9.500", img: "https://images.unsplash.com/photo-1555507036-ab1f4038808a?q=80&w=1200&auto=format&fit=crop" }
+          { name: "BRUNCH DIOR INSTAGRAMMABLE", price: "DT 65.000", img: pexels.brunch },
+          { name: "BRUNCH 2 PERSONNES", price: "DT 55.000", img: pexels.brunch },
+          { name: "LE COMPLET", price: "DT 28.000", img: pexels.brunch },
+          { name: "Oeuf Bénédicte nature", price: "DT 15.000", img: pexels.brunch },
+          { name: "Oeuf Bénédicte jambon", price: "DT 18.000", img: pexels.brunch },
+          { name: "Oeuf Bénédicte Saumon", price: "DT 23.000", img: pexels.brunch },
+          { name: "Oeuf Bénédicte Saumon Avocat", price: "DT 27.000", img: pexels.brunch },
+          { name: "Tartine oeuf brouillée", price: "DT 15.000", img: pexels.brunch },
+          { name: "Tartine oeuf brouillée Saumon frais", price: "DT 18.000", img: pexels.brunch },
+          { name: "Tartine Avocat Tomates Mozzarella", price: "DT 18.000", img: pexels.brunch },
+          { name: "Tartine avocat saumon frais", price: "DT 22.000", img: pexels.brunch },
+          { name: "Assiette Énergie", price: "DT 18.000", img: pexels.brunch },
+          { name: "Délices Matinal", price: "DT 23.000", img: pexels.brunch },
+          { name: "Assiette Brunch Nordique", price: "DT 28.000", img: pexels.brunch },
+          { name: "OMELETTE NATURE", price: "DT 7.000", img: pexels.brunch },
+          { name: "OEUF AU PLAT", price: "DT 7.000", img: pexels.brunch },
+          { name: "2 Oeuf à la Coque", price: "DT 8.000", img: pexels.brunch },
+          { name: "OEUF BROUILLÉE", price: "DT 7.000", img: pexels.brunch },
+          { name: "Omelette Fromage", price: "DT 10.000", img: pexels.brunch },
+          { name: "OMELETTE JAMBON FROMAGE", price: "DT 12.000", img: pexels.brunch },
+          { name: "OMELETTE THON FROMAGE", price: "DT 14.000", img: pexels.brunch },
+          { name: "OMELETTE CHAMPIGNONS", price: "DT 15.000", img: pexels.brunch },
+          { name: "PAIN AU CHOCOLAT", price: "DT 3.500", img: pexels.pastry },
+          { name: "CROISSANT", price: "DT 3.000", img: pexels.pastry },
+          { name: "Croissant Nutella", price: "DT 8.000", img: pexels.pastry },
+          { name: "Croissant fourré à la Pistache & Nutella", price: "DT 9.000", img: pexels.pastry },
+          { name: "Pain au Chocolat Nutella Pistache", price: "DT 9.500", img: pexels.pastry },
+          { name: "Croissant nutella Banane", price: "DT 9.500", img: pexels.pastry }
         ]
       },
       {
         tab: "Douceurs",
         category: "Crêpes, Gaufres & Pancakes",
         items: [
-          { name: "Brioche Pistache & Fraise", price: "DT 21.000", img: "https://images.unsplash.com/photo-1600431521340-491eca880813?q=80&w=1200&auto=format&fit=crop" },
-          { name: "Brioche Nutella", price: "DT 19.000", img: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?q=80&w=1200&auto=format&fit=crop" },
-          { name: "Brioche Speculoos", price: "DT 20.000", img: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?q=80&w=1200&auto=format&fit=crop" },
-          { name: "Crêpes Sucre / Miel", price: "DT 10.000 - DT 12.000", img: "https://images.unsplash.com/photo-1519676867240-f03562e64548?q=80&w=1200&auto=format&fit=crop" },
-          { name: "Crêpes Nutella", price: "DT 14.000", img: "https://images.unsplash.com/photo-1519676867240-f03562e64548?q=80&w=1200&auto=format&fit=crop" },
-          { name: "Crêpe Nutella Fraise", price: "DT 16.000", img: "https://images.unsplash.com/photo-1519676867240-f03562e64548?q=80&w=1200&auto=format&fit=crop" },
-          { name: "Crepe Nutella Speculoos", price: "DT 16.000", img: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?q=80&w=1200&auto=format&fit=crop" },
-          { name: "Crêpe Nutella Banane", price: "DT 16.000 - DT 19.000", img: "https://images.unsplash.com/photo-1519676867240-f03562e64548?q=80&w=1200&auto=format&fit=crop" },
-          { name: "Crêpes Nutella OREO", price: "DT 16.000", img: "https://images.unsplash.com/photo-1519676867240-f03562e64548?q=80&w=1200&auto=format&fit=crop" },
-          { name: "Crêpes Nutella Amandes effilées", price: "DT 16.000", img: "https://images.unsplash.com/photo-1519676867240-f03562e64548?q=80&w=1200&auto=format&fit=crop" },
-          { name: "Crêpe Caramel Beurre salée", price: "DT 15.000 - DT 18.000", img: "https://images.unsplash.com/photo-1519676867240-f03562e64548?q=80&w=1200&auto=format&fit=crop" },
-          { name: "Crêpes DUBAÏ", price: "DT 19.000", img: "https://images.unsplash.com/photo-1519676867240-f03562e64548?q=80&w=1200&auto=format&fit=crop" },
-          { name: "Trio de Pancakes", price: "DT 10.000 - DT 12.000", img: "https://images.unsplash.com/photo-1528207776546-365bb710ee93?q=80&w=1200&auto=format&fit=crop" },
-          { name: "Trio Pancakes Caramel Beurre Salée", price: "DT 13.000 - DT 16.000", img: "https://images.unsplash.com/photo-1528207776546-365bb710ee93?q=80&w=1200&auto=format&fit=crop" },
-          { name: "Trio de Pancakes Nutella", price: "DT 14.000", img: "https://images.unsplash.com/photo-1528207776546-365bb710ee93?q=80&w=1200&auto=format&fit=crop" },
-          { name: "Trio de Pancakes Nutella amande effilée", price: "DT 15.000", img: "https://images.unsplash.com/photo-1528207776546-365bb710ee93?q=80&w=1200&auto=format&fit=crop" },
-          { name: "Trio de pancakes KINDER BUENO", price: "DT 16.000", img: "https://images.unsplash.com/photo-1528207776546-365bb710ee93?q=80&w=1200&auto=format&fit=crop" },
-          { name: "Trio de Pancakes Nutella KINDER", price: "DT 16.000 - DT 16.000", img: "https://images.unsplash.com/photo-1528207776546-365bb710ee93?q=80&w=1200&auto=format&fit=crop" },
-          { name: "Trio de Pancakes Nutella Speculoos", price: "DT 16.000", img: "https://images.unsplash.com/photo-1528207776546-365bb710ee93?q=80&w=1200&auto=format&fit=crop" },
-          { name: "Trio de Pancakes Nutella Banane", price: "DT 18.000", img: "https://images.unsplash.com/photo-1528207776546-365bb710ee93?q=80&w=1200&auto=format&fit=crop" },
-          { name: "Gaufre Sucre", price: "DT 10.000 - DT 12.000", img: "https://images.unsplash.com/photo-1573821663912-569901278f1b?q=80&w=1200&auto=format&fit=crop" },
-          { name: "Gaufre Nutella", price: "DT 15.000", img: "https://images.unsplash.com/photo-1573821663912-569901278f1b?q=80&w=1200&auto=format&fit=crop" },
-          { name: "Gaufre Nutella Boule de Glace", price: "DT 18.000", img: "https://images.unsplash.com/photo-1573821663912-569901278f1b?q=80&w=1200&auto=format&fit=crop" },
-          { name: "Pain perdu Miel ou Sirop d'érable", price: "DT 14.000 - DT 17.000", img: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?q=80&w=1200&auto=format&fit=crop" },
-          { name: "Pain Perdu Caramel beurre salée", price: "DT 13.000 - DT 16.000", img: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?q=80&w=1200&auto=format&fit=crop" },
-          { name: "Pain Perdu Nutella", price: "DT 15.000 - DT 18.000", img: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?q=80&w=1200&auto=format&fit=crop" },
-          { name: "Pain Perdu Fruits de saison", price: "DT 15.000", img: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?q=80&w=1200&auto=format&fit=crop" },
-          { name: "Pain Perdu DUBAI", price: "DT 17.000 - DT 20.000", img: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?q=80&w=1200&auto=format&fit=crop" }
+          { name: "Brioche Pistache & Fraise", price: "DT 21.000", img: pexels.pastry },
+          { name: "Brioche Nutella", price: "DT 19.000", img: pexels.pastry },
+          { name: "Brioche Speculoos", price: "DT 20.000", img: pexels.pastry },
+          { name: "Crêpes Sucre / Miel", price: "DT 10.000 - DT 12.000", img: pexels.pastry },
+          { name: "Crêpes Nutella", price: "DT 14.000", img: pexels.pastry },
+          { name: "Crêpe Nutella Fraise", price: "DT 16.000", img: pexels.pastry },
+          { name: "Crepe Nutella Speculoos", price: "DT 16.000", img: pexels.pastry },
+          { name: "Crêpe Nutella Banane", price: "DT 16.000 - DT 19.000", img: pexels.pastry },
+          { name: "Crêpes Nutella OREO", price: "DT 16.000", img: pexels.pastry },
+          { name: "Crêpes Nutella Amandes effilées", price: "DT 16.000", img: pexels.pastry },
+          { name: "Crêpe Caramel Beurre salée", price: "DT 15.000 - DT 18.000", img: pexels.pastry },
+          { name: "Crêpes DUBAÏ", price: "DT 19.000", img: pexels.pastry },
+          { name: "Trio de Pancakes", price: "DT 10.000 - DT 12.000", img: pexels.pastry },
+          { name: "Trio Pancakes Caramel Beurre Salée", price: "DT 13.000 - DT 16.000", img: pexels.pastry },
+          { name: "Trio de Pancakes Nutella", price: "DT 14.000", img: pexels.pastry },
+          { name: "Trio de Pancakes Nutella amande effilée", price: "DT 15.000", img: pexels.pastry },
+          { name: "Trio de pancakes KINDER BUENO", price: "DT 16.000", img: pexels.pastry },
+          { name: "Trio de Pancakes Nutella KINDER", price: "DT 16.000 - DT 16.000", img: pexels.pastry },
+          { name: "Trio de Pancakes Nutella Speculoos", price: "DT 16.000", img: pexels.pastry },
+          { name: "Trio de Pancakes Nutella Banane", price: "DT 18.000", img: pexels.pastry },
+          { name: "Gaufre Sucre", price: "DT 10.000 - DT 12.000", img: pexels.pastry },
+          { name: "Gaufre Nutella", price: "DT 15.000", img: pexels.pastry },
+          { name: "Gaufre Nutella Boule de Glace", price: "DT 18.000", img: pexels.pastry },
+          { name: "Pain perdu Miel ou Sirop d'érable", price: "DT 14.000 - DT 17.000", img: pexels.pastry },
+          { name: "Pain Perdu Caramel beurre salée", price: "DT 13.000 - DT 16.000", img: pexels.pastry },
+          { name: "Pain Perdu Nutella", price: "DT 15.000 - DT 18.000", img: pexels.pastry },
+          { name: "Pain Perdu Fruits de saison", price: "DT 15.000", img: pexels.pastry },
+          { name: "Pain Perdu DUBAI", price: "DT 17.000 - DT 20.000", img: pexels.pastry }
         ]
       },
       {
         tab: "Desserts",
         category: "Pâtisserie Fine & Desserts",
         items: [
-          { name: "Le Cookie GLACÉE", price: "DT 25.000", img: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?q=80&w=1200&auto=format&fit=crop" },
-          { name: "Mango Riviera", price: "DT 16.000", img: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?q=80&w=1200&auto=format&fit=crop" },
-          { name: "Coco Passion Pampelonne", price: "DT 17.000", img: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?q=80&w=1200&auto=format&fit=crop" },
-          { name: "Pistache Impériale", price: "DT 13.000", img: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?q=80&w=1200&auto=format&fit=crop" },
-          { name: "Dubai Glacé", price: "DT 24.000", img: "https://images.unsplash.com/photo-1551024601-bec78aea704b?q=80&w=1200&auto=format&fit=crop" },
-          { name: "Citron d'Azur", price: "DT 15.000", img: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?q=80&w=1200&auto=format&fit=crop" },
-          { name: "Rocher de la Côte d'Azur", price: "DT 23.000", img: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?q=80&w=1200&auto=format&fit=crop" },
-          { name: "Cheesecake Framboise", price: "DT 16.000", img: "https://images.unsplash.com/photo-1533134242443-d4fd215305ad?q=80&w=1200&auto=format&fit=crop" },
-          { name: "Cheesecake Speculoos", price: "DT 16.000", img: "https://images.unsplash.com/photo-1533134242443-d4fd215305ad?q=80&w=1200&auto=format&fit=crop" },
-          { name: "Cheesecake Pistache", price: "DT 17.000", img: "https://images.unsplash.com/photo-1533134242443-d4fd215305ad?q=80&w=1200&auto=format&fit=crop" },
-          { name: "FONDANT AU CHOCOLAT (maison)", price: "DT 15.000", img: "https://images.unsplash.com/photo-1533134242443-d4fd215305ad?q=80&w=1200&auto=format&fit=crop" },
-          { name: "Fondant Kinder (maison) avec boule de GLACE", price: "DT 16.000", img: "https://images.unsplash.com/photo-1533134242443-d4fd215305ad?q=80&w=1200&auto=format&fit=crop" },
-          { name: "FONDANT À LA PISTACHE (maison)", price: "DT 17.000", img: "https://images.unsplash.com/photo-1533134242443-d4fd215305ad?q=80&w=1200&auto=format&fit=crop" },
-          { name: "TIRAMISU CLASSIQUE", price: "DT 15.000", img: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?q=80&w=1200&auto=format&fit=crop" },
-          { name: "TIRAMISU NUTELLA DUBAÏ", price: "DT 18.000", img: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?q=80&w=1200&auto=format&fit=crop" },
-          { name: "ASSIETTE DE FRUITS FRAIS", price: "DT 27.000", img: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?q=80&w=1200&auto=format&fit=crop" },
-          { name: "Macarons", price: "DT 3.000", img: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?q=80&w=1200&auto=format&fit=crop" },
-          { name: "LE ROCHER", price: "DT 17.000", img: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?q=80&w=1200&auto=format&fit=crop" },
-          { name: "Pistachio Ruby", price: "DT 17.000", img: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?q=80&w=1200&auto=format&fit=crop" },
-          { name: "DOME CHOCOLAT BLANC PISTACHE", price: "DT 18.000", img: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?q=80&w=1200&auto=format&fit=crop" },
-          { name: "FORÊT NOIRE", price: "DT 17.000", img: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?q=80&w=1200&auto=format&fit=crop" },
-          { name: "TARTE SPECULOOS", price: "DT 18.000", img: "https://images.unsplash.com/photo-1533134242443-d4fd215305ad?q=80&w=1200&auto=format&fit=crop" },
-          { name: "TARTE MYRTILLES", price: "DT 16.000", img: "https://images.unsplash.com/photo-1533134242443-d4fd215305ad?q=80&w=1200&auto=format&fit=crop" },
-          { name: "TARTE PISTACHE", price: "DT 18.000", img: "https://images.unsplash.com/photo-1533134242443-d4fd215305ad?q=80&w=1200&auto=format&fit=crop" },
-          { name: "PATISSERIE DU JOUR", price: "DT 16.000", img: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?q=80&w=1200&auto=format&fit=crop" }
+          { name: "Le Cookie GLACÉE", price: "DT 25.000", img: pexels.dessert },
+          { name: "Mango Riviera", price: "DT 16.000", img: pexels.dessert },
+          { name: "Coco Passion Pampelonne", price: "DT 17.000", img: pexels.dessert },
+          { name: "Pistache Impériale", price: "DT 13.000", img: pexels.dessert },
+          { name: "Dubai Glacé", price: "DT 24.000", img: pexels.dessert },
+          { name: "Citron d'Azur", price: "DT 15.000", img: pexels.dessert },
+          { name: "Rocher de la Côte d'Azur", price: "DT 23.000", img: pexels.dessert },
+          { name: "Cheesecake Framboise", price: "DT 16.000", img: pexels.dessert },
+          { name: "Cheesecake Speculoos", price: "DT 16.000", img: pexels.dessert },
+          { name: "Cheesecake Pistache", price: "DT 17.000", img: pexels.dessert },
+          { name: "FONDANT AU CHOCOLAT (maison)", price: "DT 15.000", img: pexels.dessert },
+          { name: "Fondant Kinder (maison) avec boule de GLACE", price: "DT 16.000", img: pexels.dessert },
+          { name: "FONDANT À LA PISTACHE (maison)", price: "DT 17.000", img: pexels.dessert },
+          { name: "TIRAMISU CLASSIQUE", price: "DT 15.000", img: pexels.dessert },
+          { name: "TIRAMISU NUTELLA DUBAÏ", price: "DT 18.000", img: pexels.dessert },
+          { name: "ASSIETTE DE FRUITS FRAIS", price: "DT 27.000", img: pexels.dessert },
+          { name: "Macarons", price: "DT 3.000", img: pexels.dessert },
+          { name: "LE ROCHER", price: "DT 17.000", img: pexels.dessert },
+          { name: "Pistachio Ruby", price: "DT 17.000", img: pexels.dessert },
+          { name: "DOME CHOCOLAT BLANC PISTACHE", price: "DT 18.000", img: pexels.dessert },
+          { name: "FORÊT NOIRE", price: "DT 17.000", img: pexels.dessert },
+          { name: "TARTE SPECULOOS", price: "DT 18.000", img: pexels.dessert },
+          { name: "TARTE MYRTILLES", price: "DT 16.000", img: pexels.dessert },
+          { name: "TARTE PISTACHE", price: "DT 18.000", img: pexels.dessert },
+          { name: "PATISSERIE DU JOUR", price: "DT 16.000", img: pexels.dessert }
         ]
       },
       {
         tab: "Jus",
         category: "Jus Frais & Chocolats",
         items: [
-          { name: "FRESH LEMON MINT", price: "DT 15.000", img: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?q=80&w=1200&auto=format&fit=crop" },
-          { name: "Orange", price: "DT 10.000", img: "https://images.unsplash.com/photo-1613478223719-2ab802602423?q=80&w=1200&auto=format&fit=crop" },
-          { name: "Citronnade", price: "DT 9.000", img: "https://images.unsplash.com/photo-1613478223719-2ab802602423?q=80&w=1200&auto=format&fit=crop" },
-          { name: "Fraise", price: "DT 9.000", img: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?q=80&w=1200&auto=format&fit=crop" },
-          { name: "Ananas Goyave Kiwi", price: "DT 10.000", img: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?q=80&w=1200&auto=format&fit=crop" },
-          { name: "CITRONNADE MENTHE", price: "DT 10.000", img: "https://images.unsplash.com/photo-1613478223719-2ab802602423?q=80&w=1200&auto=format&fit=crop" },
-          { name: "Citronnade Fraise", price: "DT 10.000", img: "https://images.unsplash.com/photo-1613478223719-2ab802602423?q=80&w=1200&auto=format&fit=crop" },
-          { name: "Fraise Banane", price: "DT 15.000", img: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?q=80&w=1200&auto=format&fit=crop" },
-          { name: "Chocolat au lait", price: "DT 8.000", img: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?q=80&w=1200&auto=format&fit=crop" },
-          { name: "Chocolat Chaud Classique", price: "DT 10.000", img: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?q=80&w=1200&auto=format&fit=crop" },
-          { name: "Iced Chocolat", price: "DT 11.000", img: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?q=80&w=1200&auto=format&fit=crop" },
-          { name: "Chocolat chaud & MARSHMALLOW", price: "DT 15.000", img: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?q=80&w=1200&auto=format&fit=crop" }
+          { name: "FRESH LEMON MINT", price: "DT 15.000", img: pexels.juice },
+          { name: "Orange", price: "DT 10.000", img: pexels.juice },
+          { name: "Citronnade", price: "DT 9.000", img: pexels.juice },
+          { name: "Fraise", price: "DT 9.000", img: pexels.juice },
+          { name: "Ananas Goyave Kiwi", price: "DT 10.000", img: pexels.juice },
+          { name: "CITRONNADE MENTHE", price: "DT 10.000", img: pexels.juice },
+          { name: "Citronnade Fraise", price: "DT 10.000", img: pexels.juice },
+          { name: "Fraise Banane", price: "DT 15.000", img: pexels.juice },
+          { name: "Chocolat au lait", price: "DT 8.000", img: pexels.juice },
+          { name: "Chocolat Chaud Classique", price: "DT 10.000", img: pexels.juice },
+          { name: "Iced Chocolat", price: "DT 11.000", img: pexels.juice },
+          { name: "Chocolat chaud & MARSHMALLOW", price: "DT 15.000", img: pexels.juice }
         ]
       },
       {
         tab: "Insta",
         category: "Expériences Instagrammables",
         items: [
-          { name: "LATTE INSTAGRAMMABLE DIOR", price: "DT 15.000", img: "https://images.unsplash.com/photo-1541167760496-162955ed8a9f?q=80&w=1200&auto=format&fit=crop" },
-          { name: "CHOCOLAT CHAUD OU FROID Instagrammable", price: "DT 15.000", img: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?q=80&w=1200&auto=format&fit=crop" },
-          { name: "GOURMAND INSTAGRAMMABLE", price: "DT 21.000", img: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?q=80&w=1200&auto=format&fit=crop" },
-          { name: "THÉ GOURMAND INSTAGRAMMABLE", price: "DT 25.000", img: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?q=80&w=1200&auto=format&fit=crop" },
-          { name: "L'expérience INSTA 2 PERS", price: "DT 35.000", img: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?q=80&w=1200&auto=format&fit=crop" }
+          { name: "LATTE INSTAGRAMMABLE DIOR", price: "DT 15.000", img: pexels.insta },
+          { name: "CHOCOLAT CHAUD OU FROID Instagrammable", price: "DT 15.000", img: pexels.insta },
+          { name: "GOURMAND INSTAGRAMMABLE", price: "DT 21.000", img: pexels.insta },
+          { name: "THÉ GOURMAND INSTAGRAMMABLE", price: "DT 25.000", img: pexels.insta },
+          { name: "L'expérience INSTA 2 PERS", price: "DT 35.000", img: pexels.insta }
         ]
       }
     ];
@@ -1303,9 +1285,6 @@
     const tabsEl      = document.getElementById('menuTabsScrollContainer');
     const gridEl      = document.getElementById('menuCategoriesGrid');
     const stickyHeaderGroup = document.getElementById('menuStickyHeaderGroup');
-
-    const themeToggle = document.getElementById('themeToggle');
-    const themeIcon = themeToggle.querySelector('i');
 
     const itemModal = document.getElementById('itemModal');
     const modalImg = document.getElementById('modalImg');
@@ -1332,7 +1311,7 @@
             ${g.items.map((item, ii) => `
               <div class="menu-item-row" onclick="openItemModal(${gi}, ${ii})">
                 <div class="menu-item-thumb">
-                  <img src="${item.img}" alt="${item.name}" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1546069901-ba9599a7e63c?q=80&w=1200&auto=format&fit=crop'" loading="lazy">
+                  <img src="${item.img}" alt="${item.name}" onerror="this.onerror=null; this.src='https://images.pexels.com/photos/101533/pexels-photo-101533.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=200&h=200'" loading="lazy">
                 </div>
                 <div class="menu-item-info">
                   <div class="menu-item-header">
@@ -1416,7 +1395,6 @@
       const sections = document.querySelectorAll('.menu-cat-section');
       const offset = stickyHeaderGroup.offsetHeight;
 
-      // Bottom detection
       if ((window.innerHeight + window.scrollY) >= document.documentElement.scrollHeight - 50) {
         highlightTab(sections.length - 1);
         return;
@@ -1442,7 +1420,7 @@
         const activeTab = tabsEl.querySelector(`[data-i="${idx}"]`);
         if (activeTab) {
           activeTab.classList.add('active');
-          activeTab.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+          activeTab.scrollIntoView({ behavior: 'auto', block: 'nearest', inline: 'center' });
         }
       }
     }
@@ -1458,35 +1436,12 @@
 
     document.querySelectorAll('.section').forEach(sec => revealObserver.observe(sec));
 
-    function setTheme(theme) {
-      document.documentElement.setAttribute('data-theme', theme);
-      localStorage.setItem('theme', theme);
-      themeIcon.className = theme === 'dark' ? 'fa-solid fa-sun' : 'fa-solid fa-moon';
-    }
-
-    function toggleTheme() {
-      const currentTheme = document.documentElement.getAttribute('data-theme');
-      setTheme(currentTheme === 'dark' ? 'light' : 'dark');
-    }
-
-    function initTheme() {
-      const savedTheme = localStorage.getItem('theme');
-      const hour = new Date().getHours();
-      const isLate = hour >= 19 || hour < 7;
-      const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-      if (savedTheme) { setTheme(savedTheme); }
-      else if (systemDark || isLate) { setTheme('dark'); }
-      else { setTheme('light'); }
-    }
-
-    themeToggle.addEventListener('click', toggleTheme);
-
     function openItemModal(gi, ii) {
       const item = menuData[gi].items[ii];
-      modalImg.src = item.img || 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?q=80&w=1200&auto=format&fit=crop';
+      modalImg.src = item.img || 'https://images.pexels.com/photos/101533/pexels-photo-101533.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=600&h=600';
       modalTitle.textContent = item.name;
       modalPrice.textContent = item.price;
-      modalDesc.textContent = item.desc || "Découvrez l'excellence de nos créations artisanales, préparées avec passion pour un moment d'exception.";
+      modalDesc.textContent = "Découvrez l'excellence de nos créations artisanales, préparées avec passion pour un moment d'exception.";
       itemModal.classList.add('active');
       document.body.style.overflow = 'hidden';
     }
@@ -1502,7 +1457,6 @@
       if (e.target === itemModal) closeItemModal();
     });
 
-    initTheme();
     buildMenuPage();
   </script>
 
