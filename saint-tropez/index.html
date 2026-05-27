@@ -28,6 +28,18 @@
       --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
+    /* Dark Mode Variables */
+    [data-theme="dark"] {
+      --cream: #0F0A08;
+      --linen: #1A1310;
+      --white: #160F0C;
+      --text: #F2EDE4;
+      --muted: #A89A91;
+      --light: #7A6B62;
+      --border: rgba(242, 237, 228, 0.1);
+      --shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+    }
+
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     html { scroll-behavior: smooth; }
@@ -38,12 +50,14 @@
       color: var(--text);
       line-height: 1.6;
       -webkit-font-smoothing: antialiased;
+      transition: background-color 0.3s ease, color 0.3s ease;
     }
 
     /* Multi-View Transition Handling */
     .view-container {
-      transition: opacity 0.3s ease-in-out;
+      transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
       opacity: 1;
+      transform: scale(1);
     }
 
     .view-hidden {
@@ -161,6 +175,29 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+    }
+
+    .theme-toggle {
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.1);
+      color: #fff;
+      border: 1px solid rgba(255,255,255,0.2);
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .theme-toggle:hover {
+      background: rgba(255,255,255,0.2);
+    }
+
+    [data-theme="dark"] .theme-toggle {
+      background: var(--gold);
+      border-color: var(--gold);
     }
 
     .brand {
@@ -301,12 +338,23 @@
       .container { padding: 0 1.5rem; }
       .hero h1 { margin-bottom: 1rem; }
       .hero .loc { margin-bottom: 2.5rem; }
+
+      /* Menu specific mobile tweaks */
+      .menu-page-header { padding: 0.85rem 0; }
+      .menu-header-left h2 { font-size: 1.4rem; }
+      .btn-return { padding: 8px 12px; gap: 8px; }
+      .menu-tabs-scroll { gap: 1.25rem; }
+      .menu-tab-btn { font-size: 0.85rem; }
+
       .menu-item-row.featured {
         padding: 1.25rem;
       }
       .menu-item-row.featured .menu-item-thumb {
         width: 80px;
         height: 80px;
+      }
+      .menu-item-row.featured .menu-item-name {
+        font-size: 1.1rem;
       }
     }
 
@@ -583,6 +631,7 @@
       white-space: nowrap;
       min-width: 60px;
       text-align: center;
+      flex-shrink: 0;
     }
 
     .menu-tab-btn::after {
@@ -611,6 +660,90 @@
     .menu-page-content {
       padding: 4rem 0;
       flex-grow: 1;
+    }
+
+    /* Popup Modal Styles */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 10, 8, 0.85);
+      backdrop-filter: blur(8px);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .modal-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .modal-content {
+      background: var(--white);
+      width: 100%;
+      max-width: 500px;
+      border-radius: 12px;
+      overflow: hidden;
+      position: relative;
+      transform: translateY(30px) scale(0.95);
+      transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    }
+
+    .modal-overlay.active .modal-content {
+      transform: translateY(0) scale(1);
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      width: 32px;
+      height: 32px;
+      background: var(--white);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 10;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      color: var(--text);
+    }
+
+    .modal-img {
+      width: 100%;
+      height: 300px;
+      object-fit: cover;
+    }
+
+    .modal-body {
+      padding: 2rem;
+    }
+
+    .modal-title {
+      font-family: var(--serif);
+      font-size: 1.75rem;
+      margin-bottom: 0.5rem;
+      color: var(--text);
+    }
+
+    .modal-price {
+      font-size: 1.25rem;
+      color: var(--gold);
+      font-weight: 600;
+      margin-bottom: 1rem;
+      display: block;
+    }
+
+    .modal-desc {
+      color: var(--muted);
+      line-height: 1.7;
+      margin-bottom: 2rem;
     }
 
     .menu-categories-grid {
@@ -804,6 +937,9 @@
     <header class="topbar">
       <div class="container">
         <div class="brand">Saint Tropez <small>La Marsa</small></div>
+        <button class="theme-toggle" id="themeToggle" aria-label="Changer de thème">
+          <i class="fa-solid fa-moon"></i>
+        </button>
       </div>
     </header>
 
@@ -911,8 +1047,8 @@
           </article>
 
         </div>
-        <div class="text-center mt-2">
-          <button class="btn btn-line" onclick="navigateToMenu()">Voir le menu complet</button>
+        <div class="text-center mt-2" style="display: flex; flex-direction: column; align-items: center;">
+          <button class="btn btn-line" style="margin: 0 auto;" onclick="navigateToMenu()">Voir le menu complet</button>
           <br>
           <small style="color:var(--light);margin-top:0.5rem;display:inline-block;font-size:0.75rem;">Menu digital by Menux Lite</small>
         </div>
@@ -925,25 +1061,29 @@
         <div class="section-head">
           <span class="tag">Nous Trouver</span>
           <h2>Saint Tropez</h2>
+          <div style="margin-top: 1rem; color: var(--gold); font-weight: 600;">
+            <i class="fa-solid fa-star"></i> 4.4 <span style="font-weight: 400; color: var(--muted); font-size: 0.9rem;">(820 avis Google)</span>
+          </div>
         </div>
         <div class="contact-grid">
           <div class="contact-info">
             <div class="contact-block">
               <h3>Adresse</h3>
-              <p>La Marsa, Tunisie</p>
-              <div class="sub">À quelques pas de la brise marine.</div>
+              <p>Rue des Hafsides, Marsa, Tunis</p>
+              <div class="sub">Au cœur de La Marsa, escale gourmande.</div>
             </div>
             <div class="contact-block">
               <h3>Horaires</h3>
               <p>Tous les jours — 7h00 à 23h00</p>
-              <div class="sub">Brunch, douceurs et boissons en continu.</div>
+              <div class="sub">Brunch, café et pâtisserie fine.</div>
             </div>
             <div class="contact-block">
-              <h3>Réservations</h3>
+              <h3>Contact & Social</h3>
+              <p>Tél: +216 26 054 209</p>
               <div class="contact-btns">
                 <a href="https://wa.me/21626054209?text=Bonjour%20Saint%20Tropez%20La%20Marsa" target="_blank" rel="noopener" class="btn btn-fill">WhatsApp</a>
                 <a href="https://instagram.com/sainttropez.lamarsa" target="_blank" rel="noopener" class="btn btn-line">Instagram</a>
-                <a href="https://maps.google.com/?q=La+Marsa+Tunisia" target="_blank" rel="noopener" class="btn btn-line">Itinéraire</a>
+                <a href="https://www.facebook.com/sainttropez.lamarsa" target="_blank" rel="noopener" class="btn btn-line">Facebook</a>
               </div>
             </div>
           </div>
@@ -953,6 +1093,22 @@
         </div>
       </div>
     </section>
+
+    <!-- Modal Item Detail -->
+    <div class="modal-overlay" id="itemModal">
+      <div class="modal-content">
+        <button class="modal-close" id="modalClose">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+        <img src="" alt="" class="modal-img" id="modalImg">
+        <div class="modal-body">
+          <h2 class="modal-title" id="modalTitle"></h2>
+          <span class="modal-price" id="modalPrice"></span>
+          <p class="modal-desc" id="modalDesc"></p>
+          <button class="btn btn-fill" style="width:100%" id="modalAction">Fermer</button>
+        </div>
+      </div>
+    </div>
 
     <!-- Footer -->
     <footer class="foot">
@@ -1130,6 +1286,19 @@
     const gridEl      = document.getElementById('menuCategoriesGrid');
     const stickyHeaderGroup = document.getElementById('menuStickyHeaderGroup');
 
+    // Theme Toggle Elements
+    const themeToggle = document.getElementById('themeToggle');
+    const themeIcon = themeToggle.querySelector('i');
+
+    // Modal Elements
+    const itemModal = document.getElementById('itemModal');
+    const modalImg = document.getElementById('modalImg');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalPrice = document.getElementById('modalPrice');
+    const modalDesc = document.getElementById('modalDesc');
+    const modalClose = document.getElementById('modalClose');
+    const modalAction = document.getElementById('modalAction');
+
     let activeCat = 0;
     let isScrollingClick = false;
     let scrollTimeout;
@@ -1147,8 +1316,8 @@
         <section class="menu-cat-section" id="cat-sec-${gi}" data-ci="${gi}">
           <div class="menu-cat-title-bar">${g.category}</div>
           <div class="menu-cat-items">
-            ${g.items.map(item => `
-              <div class="menu-item-row ${item.signature ? 'featured' : ''}">
+            ${g.items.map((item, ii) => `
+              <div class="menu-item-row ${item.signature ? 'featured' : ''}" onclick="openItemModal(${gi}, ${ii})">
                 ${item.img ? `
                   <div class="menu-item-thumb">
                     <img src="${item.img}" alt="${item.name}" onerror="this.onerror=null; this.src='https://images.pexels.com/photos/101533/pexels-photo-101533.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=100&h=100'" loading="lazy">
@@ -1178,16 +1347,45 @@
     // ── Navigation Functions (View Toggling & History States) ──
     function navigateToMenu() {
       savedScrollY = window.scrollY; // Preserve scroll position of Landing Page
-      landingView.classList.add('view-hidden');
-      menuView.classList.remove('view-hidden');
-      window.scrollTo({ top: 0, behavior: 'instant' });
+
+      // Smooth Transition Logic
+      landingView.style.transform = 'scale(0.95)';
+      landingView.style.opacity = '0';
+
+      setTimeout(() => {
+        landingView.classList.add('view-hidden');
+        menuView.classList.remove('view-hidden');
+        menuView.style.opacity = '0';
+        menuView.style.transform = 'translateY(20px)';
+
+        window.scrollTo({ top: 0, behavior: 'instant' });
+
+        requestAnimationFrame(() => {
+          menuView.style.opacity = '1';
+          menuView.style.transform = 'translateY(0)';
+        });
+      }, 400);
+
       history.pushState({ view: 'menu' }, ''); // Enable native hardware back button handling
     }
 
     function navigateToLanding() {
-      menuView.classList.add('view-hidden');
-      landingView.classList.remove('view-hidden');
-      window.scrollTo({ top: savedScrollY, behavior: 'instant' }); // Restore scroll position exactly
+      menuView.style.opacity = '0';
+      menuView.style.transform = 'translateY(20px)';
+
+      setTimeout(() => {
+        menuView.classList.add('view-hidden');
+        landingView.classList.remove('view-hidden');
+        landingView.style.opacity = '0';
+        landingView.style.transform = 'scale(1.05)';
+
+        window.scrollTo({ top: savedScrollY, behavior: 'instant' });
+
+        requestAnimationFrame(() => {
+          landingView.style.opacity = '1';
+          landingView.style.transform = 'scale(1)';
+        });
+      }, 400);
     }
 
     // Handle browser/hardware back navigation organically
@@ -1279,7 +1477,60 @@
 
     document.querySelectorAll('.section').forEach(sec => revealObserver.observe(sec));
 
+    // ── Theme Management ──
+    function setTheme(theme) {
+      document.documentElement.setAttribute('data-theme', theme);
+      localStorage.setItem('theme', theme);
+      themeIcon.className = theme === 'dark' ? 'fa-solid fa-sun' : 'fa-solid fa-moon';
+    }
+
+    function toggleTheme() {
+      const currentTheme = document.documentElement.getAttribute('data-theme');
+      setTheme(currentTheme === 'dark' ? 'light' : 'dark');
+    }
+
+    function initTheme() {
+      const savedTheme = localStorage.getItem('theme');
+      const hour = new Date().getHours();
+      const isLate = hour >= 19 || hour < 7;
+      const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+      if (savedTheme) {
+        setTheme(savedTheme);
+      } else if (systemDark || isLate) {
+        setTheme('dark');
+      } else {
+        setTheme('light');
+      }
+    }
+
+    themeToggle.addEventListener('click', toggleTheme);
+
+    // ── Modal Logic ──
+    function openItemModal(gi, ii) {
+      const item = menuData[gi].items[ii];
+      modalImg.src = item.img || 'https://images.pexels.com/photos/101533/pexels-photo-101533.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=600&h=600';
+      modalTitle.textContent = item.name;
+      modalPrice.textContent = item.price;
+      modalDesc.textContent = item.desc || "Découvrez l'excellence de nos créations artisanales, préparées avec passion pour un moment d'exception.";
+
+      itemModal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeItemModal() {
+      itemModal.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    modalClose.addEventListener('click', closeItemModal);
+    modalAction.addEventListener('click', closeItemModal);
+    itemModal.addEventListener('click', (e) => {
+      if (e.target === itemModal) closeItemModal();
+    });
+
     // Initialize layout on load
+    initTheme();
     buildMenuPage();
   </script>
 
