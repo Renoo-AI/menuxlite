@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" dir="ltr">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -35,18 +35,27 @@
       --accent: #AF835D;
       --text: #1A1412;
       --muted: #6B5E56;
+      --light: #9E9088;
       --border: rgba(26, 20, 18, 0.05);
       --shadow: 0 10px 40px rgba(175, 131, 93, 0.05);
-
       --serif: 'Cinzel', Georgia, serif;
       --sans: 'Plus Jakarta Sans', system-ui, sans-serif;
       --transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
+    [data-theme="dark"] {
+      --bg: #0D0907;
+      --surface: #14100E;
+      --accent: #AF835D;
+      --text: #E8E2DD;
+      --muted: #9E9088;
+      --light: #6B5E56;
+      --border: rgba(232, 226, 221, 0.08);
+      --shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+    }
+
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     html { scroll-behavior: smooth; }
-
     body {
       font-family: var(--sans);
       background: var(--bg);
@@ -54,6 +63,7 @@
       line-height: 1.6;
       -webkit-font-smoothing: antialiased;
       -webkit-tap-highlight-color: transparent;
+      transition: background-color 0.4s ease;
     }
 
     .view-container {
@@ -61,22 +71,9 @@
       opacity: 1;
       transform: scale(1);
     }
+    .view-hidden { display: none !important; opacity: 0; }
 
-    .view-hidden {
-      display: none !important;
-      opacity: 0;
-    }
-
-    img { max-width: 100%; display: block; }
-    a { color: inherit; text-decoration: none; }
-    button { background: none; border: none; font: inherit; cursor: pointer; color: inherit; }
-
-    h1, h2, h3, .serif {
-      font-family: var(--serif);
-      font-weight: 400;
-      letter-spacing: 0.06em;
-      line-height: 1.1;
-    }
+    h1, h2, h3, .serif { font-family: var(--serif); font-weight: 400; letter-spacing: 0.06em; line-height: 1.1; }
 
     .tag {
       font-size: 0.7rem;
@@ -89,869 +86,107 @@
       opacity: 0.9;
     }
 
-    .container {
-      width: 100%;
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 2rem;
-    }
+    .container { width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+    .section { padding: 10rem 0; opacity: 0; transform: translateY(30px); transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1), transform 1.2s cubic-bezier(0.16, 1, 0.3, 1); will-change: transform, opacity; }
+    .section.revealed { opacity: 1; transform: translateY(0); }
 
-    .section {
-      padding: 10rem 0;
-      opacity: 0;
-      transform: translateY(30px);
-      transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1), transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
-      will-change: transform, opacity;
-    }
-
-    .section.revealed {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    .section-head {
-      text-align: center;
-      margin-bottom: 5rem;
-    }
-
-    .section-head h2 {
-      font-size: clamp(2.2rem, 7vw, 3.8rem);
-      margin-top: 0.75rem;
-      font-weight: 400;
-      letter-spacing: 0.08em;
-    }
-
-    .text-center { text-align: center; }
-    .mt-1 { margin-top: 1rem; }
-    .mt-2 { margin-top: 2rem; }
-
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 0.9rem 2rem;
-      font-size: 0.8rem;
-      font-weight: 600;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      transition: var(--transition);
-      min-width: 150px;
-    }
-
-    .btn-fill {
-      background: var(--text);
-      color: var(--bg);
-      border: 1px solid var(--text);
-    }
+    .btn { display: inline-flex; align-items: center; justify-content: center; padding: 0.9rem 2rem; font-size: 0.8rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; transition: var(--transition); min-width: 150px; }
+    .btn-fill { background: var(--text); color: var(--bg); border: 1px solid var(--text); }
     .btn-fill:hover { background: #3b2a21; }
+    .btn-ghost { background: transparent; color: #fff; border: 1px solid rgba(255,255,255,0.5); }
+    .btn-ghost:hover { background: rgba(255,255,255,0.1); border-color: #fff; }
 
-    .btn-ghost {
-      background: transparent;
-      color: #fff;
-      border: 1px solid rgba(255,255,255,0.5);
-    }
-    .btn-ghost:hover {
-      background: rgba(255,255,255,0.1);
-      border-color: #fff;
-    }
+    .topbar { position: absolute; top: 0; left: 0; width: 100%; z-index: 10; padding: 1.4rem 0; border-bottom: 1px solid rgba(255,255,255,0.12); }
+    .topbar .container { display: flex; justify-content: space-between; align-items: center; }
+    .brand { color: #fff; font-size: 1.15rem; letter-spacing: 0.1em; text-transform: uppercase; }
+    .brand small { display: block; font-size: 0.6rem; letter-spacing: 0.18em; color: rgba(255,255,255,0.6); margin-top: 0.15rem; font-weight: 400; }
 
-    .btn-line {
-      background: transparent;
-      color: var(--text);
-      border: 1px solid var(--text);
-    }
-    .btn-line:hover {
-      background: var(--text);
-      color: var(--bg);
-    }
+    .hero { position: relative; min-height: 100svh; display: flex; align-items: center; justify-content: center; text-align: center; color: #fff; background: #1a120e; overflow: hidden; }
+    .hero img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.6; z-index: 1; transform: scale(1.05); animation: heroZoom 20s ease-out forwards; }
+    @keyframes heroZoom { from { transform: scale(1.15); } to { transform: scale(1); } }
+    .hero::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(26,18,14,0.35) 0%, rgba(26,18,14,0.15) 40%, rgba(26,18,14,0.7) 100%); z-index: 2; }
+    .hero-inner { position: relative; z-index: 3; padding: 0 1rem; }
+    .hero h1 { font-size: clamp(3.5rem, 14vw, 8.5rem); margin-bottom: 1.25rem; text-shadow: 0 10px 40px rgba(0,0,0,0.25); }
 
-    .topbar {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      z-index: 10;
-      padding: 1.4rem 0;
-      border-bottom: 1px solid rgba(255,255,255,0.12);
-    }
+    .theme-toggle-pro { width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; border-radius: 50%; background: rgba(255,255,255,0.05); color: #fff; border: 1px solid rgba(255,255,255,0.15); cursor: pointer; transition: var(--transition); }
+    .theme-toggle-pro:hover { background: rgba(255,255,255,0.1); transform: rotate(15deg); }
+    [data-theme="dark"] .theme-toggle-pro { color: var(--accent); border-color: var(--accent); }
 
-    .brand {
-      color: #fff;
-      font-size: 1.15rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-    }
+    #menu-view { min-height: 100vh; background-color: var(--bg); background-image: radial-gradient(rgba(175, 131, 93, 0.03) 1px, transparent 0); background-size: 24px 24px; }
+    .menu-sticky-header-group { position: sticky; top: 0; z-index: 100; background: var(--surface); border-bottom: 1px solid var(--border); box-shadow: 0 4px 20px rgba(0,0,0,0.02); }
+    [data-theme="dark"] .menu-sticky-header-group { background: rgba(20, 16, 14, 0.95); backdrop-filter: blur(10px); }
+    .menu-page-tabs { padding: 0.5rem 0; border-top: 1px solid var(--border); }
+    .menu-tabs-scroll { display: flex; gap: 2rem; overflow-x: auto; scrollbar-width: none; }
+    .menu-tabs-scroll::-webkit-scrollbar { display: none; }
+    .menu-tab-btn { background: none; border: none; padding: 12px 4px; font-family: var(--sans); font-size: 0.9rem; font-weight: 500; letter-spacing: 0.08em; color: var(--muted); text-transform: uppercase; position: relative; cursor: pointer; transition: all 0.3s ease; white-space: nowrap; }
+    .menu-tab-btn.active { color: var(--text); font-weight: 700; }
+    .menu-tab-btn::after { content: ''; position: absolute; bottom: -1px; left: 0; width: 0; height: 2px; background: var(--accent); transition: width 0.3s ease; }
+    .menu-tab-btn.active::after { width: 100%; }
 
-    .brand small {
-      display: block;
-      font-size: 0.6rem;
-      letter-spacing: 0.18em;
-      color: rgba(255,255,255,0.6);
-      margin-top: 0.15rem;
-      font-weight: 400;
-    }
+    .menu-card { background: var(--surface); border: 1px solid var(--border); border-radius: 32px; padding: 3rem; margin-bottom: 3rem; box-shadow: var(--shadow); transition: transform 0.3s ease; }
+    .category-header { display: flex; align-items: center; gap: 16px; margin-bottom: 2.5rem; }
+    .category-header i { font-size: 1.5rem; color: var(--accent); }
+    .category-header h2 { font-size: 1.65rem; color: var(--accent); font-style: italic; }
+    .category-line { height: 1px; flex-grow: 1; background: linear-gradient(to right, var(--accent), transparent); opacity: 0.15; }
 
-    .hero {
-      position: relative;
-      min-height: 100svh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      color: #fff;
-      background: #1a120e;
-      overflow: hidden;
-    }
+    .item-row { padding: 1.25rem 0; border-bottom: 1px solid rgba(26, 20, 18, 0.04); cursor: pointer; transition: var(--transition); }
+    .item-row:last-child { border-bottom: none; }
+    .item-main { display: flex; justify-content: space-between; align-items: baseline; }
+    .item-name { font-weight: 600; font-size: 1.05rem; color: var(--text); }
+    .item-price { color: var(--accent); font-weight: 800; font-size: 1.1rem; margin-left: 1rem; }
 
-    .hero img {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      opacity: 0.6;
-      z-index: 1;
-      transform: scale(1.05);
-      animation: heroZoom 20s ease-out forwards;
-    }
-
-    @keyframes heroZoom {
-      from { transform: scale(1.15); }
-      to { transform: scale(1); }
-    }
-
-    .hero::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(180deg, rgba(26,18,14,0.35) 0%, rgba(26,18,14,0.15) 40%, rgba(26,18,14,0.7) 100%);
-      z-index: 2;
-    }
-
-    .hero-inner {
-      position: relative;
-      z-index: 3;
-      padding: 0 1rem;
-    }
-
-    .hero h1 {
-      font-size: clamp(3.5rem, 14vw, 8.5rem);
-      font-weight: 400;
-      letter-spacing: 0.12em;
-      margin-bottom: 1.25rem;
-      line-height: 0.95;
-      text-shadow: 0 10px 40px rgba(0,0,0,0.25);
-    }
-
-    .hero .loc {
-      font-size: clamp(0.85rem, 2.5vw, 1.1rem);
-      letter-spacing: 0.5em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.9);
-      font-weight: 400;
-      display: block;
-      margin-bottom: 2.5rem;
-    }
-
-    .hero .lead {
-      font-size: clamp(1rem, 2.8vw, 1.2rem);
-      font-weight: 300;
-      color: rgba(255,255,255,0.85);
-      max-width: 600px;
-      margin: 0 auto 3rem;
-      line-height: 1.8;
-      letter-spacing: 0.02em;
-    }
-
-    .scroll-indicator {
-      position: absolute;
-      bottom: 2rem;
-      left: 50%;
-      transform: translateX(-50%);
-      z-index: 3;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 0.5rem;
-      color: rgba(255,255,255,0.5);
-      font-size: 0.7rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      animation: fadeInIndicator 2s ease-in-out forwards;
-    }
-
-    .scroll-indicator i {
-      font-size: 1rem;
-      animation: bounce 2s infinite;
-    }
-
-    @keyframes bounce {
-      0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
-      40% {transform: translateY(-5px);}
-      60% {transform: translateY(-3px);}
-    }
-
-    @keyframes fadeInIndicator {
-      from { opacity: 0; transform: translate(-50%, 20px); }
-      to { opacity: 1; transform: translate(-50%, 0); }
-    }
-
-    .hero-btns {
-      display: flex;
-      flex-direction: column;
-      gap: 0.75rem;
-      align-items: center;
-    }
-
-    @media (min-width: 480px) {
-      .hero-btns { flex-direction: row; }
-    }
+    .item-details { max-height: 0; overflow: hidden; transition: max-height 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease, margin-top 0.4s ease; opacity: 0; }
+    .item-row.expanded .item-details { max-height: 300px; opacity: 1; margin-top: 1rem; }
+    .item-desc { font-size: 0.9rem; color: var(--muted); line-height: 1.6; border-left: 2px solid var(--accent); padding-left: 1rem; }
 
     @media (max-width: 768px) {
       .section { padding: 5rem 0; }
-      .section-head { margin-bottom: 3rem; }
-      .container { padding: 0 1.5rem; }
-      .hero h1 { margin-bottom: 1rem; }
-      .hero .loc { margin-bottom: 2.5rem; }
-
-      .menu-page-header { padding: 1rem 0; }
-      .menu-header-left h2 { font-size: 1.5rem; }
-      .btn-return { padding: 8px 16px; border-radius: 100px; }
-      .menu-tabs-scroll { gap: 1.25rem; }
-      .menu-tab-btn { font-size: 0.8rem; letter-spacing: 0.1em; padding: 10px 2px; }
-    }
-
-    .vibe {
-      text-align: center;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .vibe p {
-      max-width: 680px;
-      margin: 0 auto;
-      font-size: clamp(1.05rem, 2.8vw, 1.2rem);
-      color: var(--muted);
-      line-height: 1.8;
-      font-weight: 300;
-    }
-
-    .highlights { background: var(--linen); }
-
-    .grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 3rem;
-    }
-
-    @media (min-width: 600px) {
-      .grid { grid-template-columns: repeat(2, 1fr); gap: 2rem; }
-    }
-
-    @media (min-width: 960px) {
-      .grid { grid-template-columns: repeat(3, 1fr); }
-    }
-
-    .card {
-      background: var(--white);
-      overflow: hidden;
-      box-shadow: var(--shadow);
-      transition: transform 0.3s ease;
-    }
-
-    .card:hover { transform: translateY(-3px); }
-
-    .card-img {
-      position: relative;
-      padding-top: 100%;
-      overflow: hidden;
-    }
-
-    .card-img img {
-      position: absolute;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      object-fit: cover;
-      transition: transform 0.6s ease;
-    }
-
-    .card:hover .card-img img { transform: scale(1.04); }
-
-    .card-body {
-      padding: 1.35rem 1.25rem 1.5rem;
-    }
-
-    .card-body h3 {
-      font-size: 1.2rem;
-      margin-bottom: 0.5rem;
-      letter-spacing: 0.04em;
-    }
-
-    .card-body .desc {
-      font-size: 0.85rem;
-      color: var(--muted);
-      line-height: 1.5;
-      margin-bottom: 0.6rem;
-    }
-
-    .card-body .price {
-      font-size: 0.9rem;
-      color: var(--accent);
-      font-weight: 600;
-    }
-
-    .editorial-quote {
-      background: var(--bg);
-      text-align: center;
-      padding: 12rem 0;
-    }
-
-    .editorial-quote blockquote {
-      max-width: 900px;
-      margin: 0 auto;
-      font-family: var(--serif);
-      font-size: clamp(1.8rem, 5vw, 3.2rem);
-      line-height: 1.3;
-      color: var(--text);
-      font-weight: 400;
-      position: relative;
-    }
-
-    .editorial-quote cite {
-      display: block;
-      margin-top: 3rem;
-      font-family: var(--sans);
-      font-style: normal;
-      font-size: 0.75rem;
-      text-transform: uppercase;
-      letter-spacing: 0.4em;
-      color: var(--accent);
-      font-weight: 600;
-    }
-
-    .contact {
-      background: var(--linen);
-    }
-
-    .contact-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 2.5rem;
-    }
-
-    @media (min-width: 768px) {
-      .contact-grid { grid-template-columns: 1fr 1fr; gap: 3rem; }
-    }
-
-    .contact-info { display: flex; flex-direction: column; gap: 1.75rem; }
-
-    .contact-block h3 {
-      font-family: var(--sans);
-      font-size: 0.75rem;
-      text-transform: uppercase;
-      letter-spacing: 0.16em;
-      color: var(--accent);
-      font-weight: 600;
-      margin-bottom: 0.3rem;
-    }
-
-    .contact-block p {
-      font-size: 1.05rem;
-      color: var(--text);
-    }
-
-    .contact-block .sub {
-      font-size: 0.88rem;
-      color: var(--muted);
-      margin-top: 0.15rem;
-    }
-
-    .contact-btns {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.75rem;
-      margin-top: 0.5rem;
-    }
-
-    .contact-btns .btn {
-      min-width: auto;
-      padding: 0.75rem 1.4rem;
-    }
-
-    .map {
-      position: relative;
-      padding-top: 80%;
-      border: 1px solid var(--border);
-      background: var(--bg);
-      overflow: hidden;
-    }
-
-    @media (min-width: 768px) {
-      .map { padding-top: 100%; }
-    }
-
-    .map iframe {
-      position: absolute;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      border: 0;
-    }
-
-    .foot {
-      background: #1A120E;
-      color: rgba(255,255,255,0.55);
-      text-align: center;
-      padding: 2.5rem 0;
-      font-size: 0.8rem;
-    }
-
-    .foot .brand {
-      display: inline-block;
-      margin-bottom: 0.5rem;
-      font-size: 1rem;
-    }
-
-    .foot .foot-sub {
-      font-size: 0.65rem;
-      color: rgba(255,255,255,0.25);
-      margin-top: 1rem;
-      letter-spacing: 0.05em;
-    }
-
-
-    #menu-view {
-      min-height: 100vh;
-      background-color: var(--bg);
-      background-image: radial-gradient(rgba(175, 131, 93, 0.03) 1px, transparent 0);
-      background-size: 24px 24px;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .menu-sticky-header-group {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      background: rgba(255, 255, 255, 0.85);
-      backdrop-filter: blur(20px);
-      border-bottom: 1px solid var(--border);
-    }
-
-    .menu-page-header {
-      padding: 1.25rem 0;
-    }
-
-    .menu-header-container {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .menu-header-left h2 {
-      font-size: 1.75rem;
-      font-family: var(--serif);
-      color: var(--text);
-    }
-
-    .menu-header-left p {
-      font-size: 0.75rem;
-      color: var(--accent);
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      font-weight: 600;
-      margin-top: 0.15rem;
-    }
-
-    .btn-return {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      padding: 10px 20px;
-      border: 1px solid rgba(26, 20, 18, 0.1);
-      border-radius: 100px;
-      font-size: 0.75rem;
-      font-weight: 700;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-      color: var(--text);
-      transition: var(--transition);
-      background: var(--surface);
-      box-shadow: 0 2px 10px rgba(0,0,0,0.02);
-    }
-
-    .btn-return:hover {
-      background: var(--text);
-      color: var(--bg);
-      border-color: var(--text);
-    }
-
-    .menu-page-tabs {
-      border-top: 1px solid var(--border);
-      padding: 0.5rem 0;
-    }
-
-    .menu-tabs-scroll {
-      display: flex;
-      gap: 2rem;
-      overflow-x: auto;
-      scrollbar-width: none;
-    }
-
-    .menu-tabs-scroll::-webkit-scrollbar { display: none; }
-
-    .menu-tab-btn {
-      background: none;
-      border: none;
-      padding: 12px 4px;
-      font-family: var(--sans);
-      font-size: 0.9rem;
-      font-weight: 500;
-      letter-spacing: 0.08em;
-      color: var(--muted);
-      text-transform: uppercase;
-      position: relative;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      white-space: nowrap;
-      min-width: 60px;
-      text-align: center;
-      flex-shrink: 0;
-    }
-
-    .menu-tab-btn::after {
-      content: '';
-      position: absolute;
-      bottom: -1px;
-      left: 0;
-      width: 0;
-      height: 2px;
-      background: var(--accent);
-      transition: width 0.3s ease;
-    }
-
-    .menu-tab-btn:hover { color: var(--text); }
-
-    .menu-tab-btn.active {
-      color: var(--text);
-      font-weight: 700;
-    }
-
-    .menu-tab-btn.active::after {
-      width: 100%;
-    }
-
-    .menu-page-content {
-      padding: 3rem 0 6rem;
-      flex-grow: 1;
-    }
-
-    .menu-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 32px;
-      padding: 3rem;
-      margin-bottom: 3rem;
-      box-shadow: var(--shadow);
-      animation: fadeInItem 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-      opacity: 0;
-    }
-
-    .category-header {
-      display: flex;
-      align-items: center;
-      gap: 24px;
-      margin-bottom: 2.5rem;
-    }
-
-    .category-header h2 {
-      font-size: 1.65rem;
-      color: var(--accent);
-      font-style: italic;
-      font-family: var(--serif);
-      font-weight: 500;
-    }
-
-    .category-line {
-      height: 1px;
-      flex-grow: 1;
-      background: linear-gradient(to right, var(--accent), transparent);
-      opacity: 0.15;
-    }
-
-    .item-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-      padding: 1.25rem 0;
-      border-bottom: 1px solid rgba(26, 20, 18, 0.03);
-    }
-
-    .item-row:last-child {
-      border-bottom: none;
-    }
-
-    .item-name {
-      font-weight: 600;
-      font-size: 1.05rem;
-      color: var(--text);
-      opacity: 0.85;
-      padding-right: 1rem;
-    }
-
-    .item-price {
-      color: var(--accent);
-      font-weight: 800;
-      white-space: nowrap;
-      font-size: 1.15rem;
-      font-family: var(--sans);
-    }
-
-    @keyframes fadeInItem {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    .menu-page-footer {
-      background: var(--linen);
-      border-top: 1px solid var(--border);
-      padding: 3rem 0;
-    }
-
-    .menu-footer-container {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      color: var(--muted);
-      font-size: 0.8rem;
-    }
-
-    @media (max-width: 600px) {
-      .menu-footer-container {
-        flex-direction: column;
-        gap: 16px;
-        text-align: center;
-      }
-      .menu-card {
-        padding: 2rem 1.5rem;
-        border-radius: 24px;
-        margin-bottom: 2rem;
-      }
-      .category-header { margin-bottom: 1.75rem; }
+      .menu-card { padding: 2rem 1.5rem; border-radius: 24px; }
       .item-name { font-size: 0.95rem; }
       .item-price { font-size: 1rem; }
-    }
-
-    .menu-footer-brand {
-      font-family: var(--serif);
-      font-size: 1rem;
-      color: var(--text);
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-    }
-
-    .menu-footer-credit {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      font-weight: 500;
-      color: var(--light);
-      font-size: 0.75rem;
-      opacity: 0.6;
-    }
-
-    .menu-footer-credit i {
-      color: var(--accent);
-      font-size: 0.6rem;
-    }
-
-    .menu-cat-section {
-      scroll-margin-top: 160px;
     }
   </style>
 </head>
 <body>
 
   <div id="landing-view" class="view-container">
-
     <header class="topbar">
       <div class="container">
         <div class="brand">Saint Tropez <small>La Marsa</small></div>
+        <button onclick="toggleTheme()" class="theme-toggle-pro" aria-label="Thème">
+          <i class="fa-solid fa-moon"></i>
+        </button>
       </div>
     </header>
 
     <section class="hero">
-      <img src="https://images.pexels.com/photos/16887243/pexels-photo-16887243.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=1600&h=1200" alt="Saint Tropez La Marsa" fetchpriority="high">
+      <img src="https://images.pexels.com/photos/16887243/pexels-photo-16887243.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=1600&h=1200" alt="Saint Tropez">
       <div class="hero-inner">
         <span class="tag" style="color: rgba(255,255,255,0.7);">Brunch & Pâtisserie Fine</span>
         <h1>Saint Tropez</h1>
-        <span class="loc">La Marsa</span>
-        <p class="lead">L'élégance d'une escale sur la Riviera, face à la douceur de vivre de La Marsa.</p>
-        <div class="hero-btns">
-          <button class="btn btn-fill" onclick="navigateToMenu()">Voir le Menu</button>
-          <a href="https://wa.me/21626054209?text=Bonjour%20Saint%20Tropez%20La%20Marsa" target="_blank" rel="noopener" class="btn btn-ghost">WhatsApp</a>
-        </div>
-      </div>
-      <div class="scroll-indicator">
-        <span>Découvrir</span>
-        <i class="fa-solid fa-chevron-down"></i>
-      </div>
-    </section>
-
-    <section class="section vibe">
-      <div class="container">
-        <span class="tag">L'Atmosphère</span>
-        <h2 style="font-size:clamp(1.5rem,4.5vw,2.2rem);margin-bottom:1.25rem;">Une parenthèse ensoleillée et gourmande</h2>
-        <p>Inspiré par les adresses les plus raffinées de la Méditerranée, Saint Tropez vous propose une expérience brunch servie toute la journée. Savourez l'arôme incomparable du café Illy, nos brioches dorées à la pistache, nos créations glacées trompe-l'œil et nos mocktails botaniques. Une table où la lumière et les saveurs se rencontrent en toute simplicité.</p>
-      </div>
-    </section>
-
-    <section class="section highlights">
-      <div class="container">
-        <div class="section-head">
-          <span class="tag">Les Incontournables</span>
-          <h2>De la Maison</h2>
-        </div>
-        <div class="grid">
-
-          <article class="card">
-            <div class="card-img">
-              <img src="https://images.pexels.com/photos/9597589/pexels-photo-9597589.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=700&h=700" alt="Brunch Dior Instagrammable" loading="lazy">
-            </div>
-            <div class="card-body">
-              <h3>Brunch Dior Instagrammable</h3>
-              <p class="desc">2 cafés au choix avec motif délicat, présentation pensée pour sublimer chaque instant.</p>
-              <span class="price">DT 65.000</span>
-            </div>
-          </article>
-
-          <article class="card">
-            <div class="card-img">
-              <img src="https://images.pexels.com/photos/5663309/pexels-photo-5663309.png?auto=compress&cs=tinysrgb&fit=crop&w=700&h=700" alt="Brioche Pistache & Fraise" loading="lazy">
-            </div>
-            <div class="card-body">
-              <h3>Brioche Pistache &amp; Fraise</h3>
-              <p class="desc">Brioche dorée et ultra-moelleuse, cœur fondant de crème pistache et fraises fraîches.</p>
-              <span class="price">DT 21.000</span>
-            </div>
-          </article>
-
-          <article class="card">
-            <div class="card-img">
-              <img src="https://images.pexels.com/photos/9840174/pexels-photo-9840174.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=700&h=700" alt="Mango Riviera" loading="lazy">
-            </div>
-            <div class="card-body">
-              <h3>Mango Riviera</h3>
-              <p class="desc">Coque lisse et lumineuse, fraîcheur tropicale inspirée des fruits d'été.</p>
-              <span class="price">DT 16.000</span>
-            </div>
-          </article>
-
-          <article class="card">
-            <div class="card-img">
-              <img src="https://images.pexels.com/photos/35225700/pexels-photo-35225700.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=700&h=700" alt="Dubaï Glacé" loading="lazy">
-            </div>
-            <div class="card-body">
-              <h3>Dubaï Glacé</h3>
-              <p class="desc">Glace pistache onctueuse et croustillant de kunefa dorée.</p>
-              <span class="price">DT 24.000</span>
-            </div>
-          </article>
-
-          <article class="card">
-            <div class="card-img">
-              <img src="https://images.pexels.com/photos/31306510/pexels-photo-31306510.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=700&h=700" alt="Iced Mocha" loading="lazy">
-            </div>
-            <div class="card-body">
-              <h3>Iced Mocha</h3>
-              <p class="desc">Espresso Illy, chocolat noir intense et lait velouté frappé sur glace.</p>
-              <span class="price">DT 13.000</span>
-            </div>
-          </article>
-
-          <article class="card">
-            <div class="card-img">
-              <img src="https://images.pexels.com/photos/33129959/pexels-photo-33129959.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=700&h=700" alt="Virgin Mojito" loading="lazy">
-            </div>
-            <div class="card-body">
-              <h3>Virgin Mojito</h3>
-              <p class="desc">Menthe fraîche pilonnée, citron vert pressé, glace pilée. Classique ou aromatisé.</p>
-              <span class="price">DT 15.000</span>
-            </div>
-          </article>
-
-        </div>
-        <div class="text-center mt-2">
-          <button class="btn btn-line" onclick="navigateToMenu()">Voir le menu complet</button>
-          <br>
-          <small style="color:var(--light);margin-top:0.5rem;display:inline-block;font-size:0.75rem;">Menu digital by Menux Lite</small>
+        <span class="loc" style="text-transform: uppercase; letter-spacing: 0.5em; color: #fff;">La Marsa</span>
+        <div class="hero-btns" style="margin-top: 2.5rem;">
+          <button class="btn btn-fill" onclick="navigateToMenu()">La Carte</button>
+          <a href="https://wa.me/21626054209" target="_blank" class="btn btn-ghost">WhatsApp</a>
         </div>
       </div>
     </section>
 
-    <section class="section editorial-quote">
+    <section class="section vibe revealed">
       <div class="container">
-        <blockquote>
-          “Le luxe n’est pas le contraire de la pauvreté, mais celui de la vulgarité.”
-          <cite>La Riviera Spirit</cite>
-        </blockquote>
+        <h2 style="text-align:center; font-size: clamp(1.5rem, 5vw, 2.5rem); margin-bottom: 2rem;">L'Atmosphère Riviera</h2>
+        <p style="text-align:center; max-width: 800px; margin: 0 auto; color: var(--muted);">Une parenthèse ensoleillée où chaque saveur raconte une escale. Saint Tropez vous accueille pour un brunch signature servi toute la journée, du café Illy d'exception aux pièces glacées artisanales.</p>
       </div>
     </section>
-
-    <section class="section contact">
-      <div class="container">
-        <div class="section-head">
-          <span class="tag">Nous Trouver</span>
-          <h2>Saint Tropez</h2>
-          <div style="margin-top: 1rem; color: var(--accent); font-weight: 600;">
-            <i class="fa-solid fa-star"></i> 4.4 <span style="font-weight: 400; color: var(--muted); font-size: 0.9rem;">(820 avis Google)</span>
-          </div>
-        </div>
-        <div class="contact-grid">
-          <div class="contact-info">
-            <div class="contact-block">
-              <h3>Adresse</h3>
-              <p>Saint Tropez, La Marsa, Tunis</p>
-              <div class="sub">Au cœur de La Marsa, escale gourmande.</div>
-            </div>
-            <div class="contact-block">
-              <h3>Horaires</h3>
-              <p>Tous les jours — 7h00 à 23h00</p>
-              <div class="sub">Brunch, café et pâtisserie fine.</div>
-            </div>
-            <div class="contact-block">
-              <h3>Contact & Social</h3>
-              <p>Tél: +216 26 054 209</p>
-              <div class="contact-btns">
-                <a href="https://wa.me/21626054209?text=Bonjour%20Saint%20Tropez%20La%20Marsa" target="_blank" rel="noopener" class="btn btn-fill">WhatsApp</a>
-                <a href="https://www.google.com/maps/dir/?api=1&destination=36.8803371,10.3329933" target="_blank" rel="noopener" class="btn btn-line">Itinéraire</a>
-                <a href="https://instagram.com/sainttropez.lamarsa" target="_blank" rel="noopener" class="btn btn-line">Instagram</a>
-              </div>
-            </div>
-          </div>
-          <div class="map">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3191.821908331189!2d10.330418376483594!3d36.8803370722247!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12e2b5e573f25c17%3A0x2f29c143957dccd9!2sSaint+Tropez%2C+La+Marsa!5e0!3m2!1sfr!2stn!4v1716810000000!5m2!1sfr!2stn" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Carte de Saint Tropez La Marsa"></iframe>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <footer class="foot">
-      <div class="container">
-        <div class="brand">Saint Tropez <small>La Marsa</small></div>
-        <p>© Saint Tropez La Marsa. Tous droits réservés.</p>
-        <div class="foot-sub">Menu digital by Menux Lite</div>
-      </div>
-    </footer>
-
   </div>
 
   <div id="menu-view" class="view-container view-hidden">
-
     <div class="menu-sticky-header-group" id="menuStickyHeaderGroup">
       <header class="menu-page-header">
-        <div class="container menu-header-container">
+        <div class="container" style="display: flex; justify-content: space-between; align-items: center; padding: 1.25rem 2rem;">
           <div class="menu-header-left">
-            <h2>La Carte</h2>
-            <p>Saint Tropez — La Marsa</p>
+            <h2 class="serif">La Carte</h2>
+            <p style="font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.2em; color: var(--accent); font-weight: 700;">Saint Tropez — La Marsa</p>
           </div>
           <button class="btn-return" onclick="navigateToLanding()">
             <i class="fa-solid fa-arrow-left-long"></i>
@@ -959,230 +194,341 @@
           </button>
         </div>
       </header>
-
       <nav class="menu-page-tabs">
         <div class="container">
-          <div class="menu-tabs-scroll" id="menuTabsScrollContainer">
-          </div>
+          <div class="menu-tabs-scroll" id="menuTabsScrollContainer"></div>
         </div>
       </nav>
     </div>
 
     <main class="menu-page-content">
-      <div class="container" id="menuCategoriesGrid">
-      </div>
+      <div class="container" id="menuCategoriesGrid"></div>
     </main>
 
     <footer class="menu-page-footer">
       <div class="container menu-footer-container">
-        <div class="menu-footer-brand">Saint Tropez <small style="font-size: 0.6rem; letter-spacing: 0.1em; opacity: 0.7;">La Marsa</small></div>
-        <span>Service non-stop • 07:00 - 23:00</span>
-        <div class="menu-footer-credit">
-          <i class="fa-solid fa-bolt"></i> Propulsé par Menux Lite
-        </div>
+        <div class="menu-footer-brand serif">Saint Tropez</div>
+        <div class="menu-footer-credit"><i class="fa-solid fa-bolt"></i> Menux Lite</div>
       </div>
     </footer>
-
   </div>
 
   <script>
     const menuData = [
       {
-        tab: "Café",
-        category: "Café Illy & Iced Coffee",
-        items: [
-          { name: "ESPRESSO ILLY", price: "DT 6.000 - DT 7.000" },
-          { name: "Cappucin", price: "DT 6.000 - DT 7.000" },
-          { name: "AMERICAN", price: "DT 6.500" },
-          { name: "CAPPUCCINO", price: "DT 4.000 - DT 7.000" },
-          { name: "Café Gourmand x3 macarons", price: "DT 13.000 - DT 14.000" },
-          { name: "MACCHIATO", price: "DT 6.000 - DT 7.000" },
-          { name: "CAFÉ CRÈME", price: "DT 4.000 - DT 7.500" },
-          { name: "Café Turc", price: "DT 8.000 - DT 10.000" },
-          { name: "ICED LATTE", price: "DT 4.000 - DT 12.000" },
-          { name: "ILLY CAPSULE ICED AMERICAN", price: "DT 11.000" },
-          { name: "AFFOGATO", price: "DT 12.000" },
-          { name: "ICED AMERICAN", price: "DT 9.000" },
-          { name: "ICED COFFEE DECAFÉINÉ", price: "DT 11.000" },
-          { name: "ICED MOCHA", price: "DT 13.000" }
+        "tab": "CAFÉ",
+        "icon": "fa-mug-hot",
+        "category": "CAFÉ, THÉ",
+        "items": [
+          { "name": "CAFÉ ILLY", "price": "", "desc": "Le café Illy, un mélange 100% Arabica, subtile et aromatique pour une expérience caféinée d'exception." },
+          { "name": "ESPRESSO ILLY", "price": "DT 6.000 - DT 7.000", "desc": "Commençons d'emblée par un cocorico si savoureux, l'idée du café Espresso, un concentré de force et de finesse torréfié à la perfection." },
+          { "name": "Cappucin", "price": "DT 6.000 - DT 7.000", "desc": "L'onctuosité d'un café court mariée à une mousse de lait veloutée, pour un plaisir doux et équilibré." },
+          { "name": "AMERICAN", "price": "DT 6.500", "desc": "L'équilibre parfait entre l'intensité de l'espresso et la douceur de l'eau, idéal pour un plaisir prolongé et raffiné." },
+          { "name": "CAPPUCCINO", "price": "DT 4.000 - DT 7.000", "desc": "Le cappuccino est une préparation de café traditionnel de la cuisine italienne, composée d'un espresso et d'une mousse de lait crémeuse et onctueuse." },
+          { "name": "Café Gourmand x3 macarons", "price": "DT 13.000 - DT 14.000", "desc": "Le voyage ultime des saveurs : un Espresso, Café crème, Américain ou Macchiato accompagné de 3 macarons artisanaux aux parfums délicats." },
+          { "name": "MACCHIATO", "price": "DT 6.000 - DT 7.000", "desc": "Caffè macchiato, appelé également espresso macchiato, est un café espresso avec une petite couche de mousse de lait pour une touche de douceur." },
+          { "name": "CAFÉ CRÈME", "price": "DT 4.000 - DT 7.500", "desc": "L'onctuosité du lait chaud mariée à la puissance d'un espresso d'exception, pour un moment de pur réconfort." },
+          { "name": "Café Turc", "price": "DT 8.000 - DT 10.000", "desc": "L'authenticité d'une méthode ancestrale, un café riche, dense et intensément parfumé, servi selon la tradition." }
         ]
       },
       {
-        tab: "Mocktails",
-        category: "Mocktails & Mojitos",
-        items: [
-          { name: "DIABOLO FRAISE", price: "DT 10.000" },
-          { name: "DIABOLO MENTHE", price: "DT 10.000" },
-          { name: "INDIEN", price: "DT 15.000" },
-          { name: "FRAÎCHEUR BOTANIQUE", price: "DT 15.000" },
-          { name: "Joséphine Baker Cocktail", price: "DT 17.000" },
-          { name: "BLUE TROPICAL", price: "DT 15.000" },
-          { name: "Pina Colada", price: "DT 17.000" },
-          { name: "MANGO COLADA", price: "DT 18.000" },
-          { name: "MOCKTAILS DU BARMAN", price: "DT 18.000" },
-          { name: "VIRGIN MOJITO", price: "DT 15.000" },
-          { name: "VIRGIN MOJITO Aromatiśé", price: "DT 17.000" },
-          { name: "MOJITO RED BULL", price: "DT 20.000" }
+        "tab": "ICED",
+        "icon": "fa-snowflake",
+        "category": "ICED COFFEE",
+        "items": [
+          { "name": "ICED LATTE", "price": "DT 4.000 - DT 12.000", "desc": "La fraîcheur glacée rencontre le velouté du lait. Arôme au choix : Cookies, chocolat blanc ou noir, caramel, vanille." },
+          { "name": "ILLY CAPSULE ICED AMERICAN", "price": "DT 11.000", "desc": "L'élégance Illy en version glacée, pour une pause rafraîchissante et sophistiquée au cœur de la journée." },
+          { "name": "AFFOGATO", "price": "DT 12.000", "desc": "Le contraste divin entre la chaleur d'un espresso intense et la fraîcheur d'une boule de glace vanille onctueuse." },
+          { "name": "ICED AMERICAN", "price": "DT 9.000", "desc": "Frappée ou classic, une alternative légère, pure et rafraîchissante pour les véritables amateurs de café." },
+          { "name": "ICED COFFEE DECAFÉINÉ", "price": "DT 11.000", "desc": "Le plaisir du café glacé, sans la caféine. Disponible en version Latte ou Américain selon vos envies." },
+          { "name": "ICED MOCHA", "price": "DT 13.000", "desc": "L'alliance irrésistible du chocolat noir fondu, du lait frais et d'un espresso Illy frappé sur glace pilée." }
         ]
       },
       {
-        tab: "Brunch",
-        category: "Brunch, Oeufs & Tartines",
-        items: [
-          { name: "BRUNCH DIOR INSTAGRAMMABLE", price: "DT 65.000" },
-          { name: "BRUNCH 2 PERSONNES", price: "DT 55.000" },
-          { name: "LE COMPLET", price: "DT 28.000" },
-          { name: "Oeuf Bénédicte nature", price: "DT 15.000" },
-          { name: "Oeuf Bénédicte jambon", price: "DT 18.000" },
-          { name: "Oeuf Bénédicte Saumon", price: "DT 23.000" },
-          { name: "Oeuf Bénédicte Saumon Avocat", price: "DT 27.000" },
-          { name: "Tartine oeuf brouillée", price: "DT 15.000" },
-          { name: "Tartine oeuf brouillée Saumon frais", price: "DT 18.000" },
-          { name: "Tartine Avocat Tomates Mozzarella", price: "DT 18.000" },
-          { name: "Tartine avocat saumon frais", price: "DT 22.000" },
-          { name: "Assiette Énergie", price: "DT 18.000" },
-          { name: "Délices Matinal", price: "DT 23.000" },
-          { name: "Assiette Brunch Nordique", price: "DT 28.000" },
-          { name: "OMELETTE NATURE", price: "DT 7.000" },
-          { name: "OEUF AU PLAT", price: "DT 7.000" },
-          { name: "2 Oeuf à la Coque", price: "DT 8.000" },
-          { name: "OEUF BROUILLÉE", price: "DT 7.000" },
-          { name: "Omelette Fromage", price: "DT 10.000" },
-          { name: "OMELETTE JAMBON FROMAGE", price: "DT 12.000" },
-          { name: "OMELETTE THON FROMAGE", price: "DT 14.000" },
-          { name: "OMELETTE CHAMPIGNONS", price: "DT 15.000" },
-          { name: "PAIN AU CHOCOLAT", price: "DT 3.500" },
-          { name: "CROISSANT", price: "DT 3.000" },
-          { name: "Croissant Nutella", price: "DT 8.000" },
-          { name: "Croissant fourré à la Pistache & Nutella", price: "DT 9.000" },
-          { name: "Pain au Chocolat Nutella Pistache", price: "DT 9.500" },
-          { name: "Croissant nutella Banane", price: "DT 9.500" }
+        "tab": "MOCKTAILS",
+        "icon": "fa-glass-water",
+        "category": "MOCKTAILS",
+        "items": [
+          { "name": "DIABOLO FRAISE", "price": "DT 10.000", "desc": "La nostalgie d'un sirop de fraise gourmand marié à la pétillance d'une eau gazéifiée rafraîchissante." },
+          { "name": "DIABOLO MENTHE", "price": "DT 10.000", "desc": "Un classique intemporel, l'éclat de la menthe fraîche pour une sensation de pureté et de fraîcheur instantanée." },
+          { "name": "INDIEN", "price": "DT 15.000", "desc": "Le mariage exotique et audacieux de l'Orangina et d'un trait de grenadine pour une saveur unique." },
+          { "name": "FRAÎCHEUR BOTANIQUE", "price": "DT 15.000", "desc": "Un cocktail détox et revitalisant : Concombre, menthe fraîche, basilic et jus de citron pressé minute." },
+          { "name": "Joséphine Baker Cocktail", "price": "DT 17.000", "desc": "Un hommage tropical : Mangue juteuse, Fruit de la passion intense et onctuosité soyeuse du lait de coco." },
+          { "name": "BLUE TROPICAL", "price": "DT 15.000", "desc": "Une invitation au voyage : Blue Curaçao, ananas, fruit de la passion et jus de citron pour une évasion bleue." },
+          { "name": "Pina Colada", "price": "DT 17.000", "desc": "Découvrez notre Pina Colada, un mélange exotique de noix de coco crémeuse et d'ananas pressé, le tout sans alcool." },
+          { "name": "MANGO COLADA", "price": "DT 18.000", "desc": "Découvrez notre Mango Colada, un délice tropical mêlant harmonieusement purée de mangue fraîche et crème de coco." },
+          { "name": "MOCKTAILS DU BARMAN", "price": "DT 18.000", "desc": "Laissez-vous surprendre par l'inspiration créative du jour de notre mixologue expert." }
         ]
       },
       {
-        tab: "Douceurs",
-        category: "Crêpes, Gaufres & Pancakes",
-        items: [
-          { name: "Brioche Pistache & Fraise", price: "DT 21.000" },
-          { name: "Brioche Nutella", price: "DT 19.000" },
-          { name: "Brioche Speculoos", price: "DT 20.000" },
-          { name: "Crêpes Sucre / Miel", price: "DT 10.000 - DT 12.000" },
-          { name: "Crêpes Nutella", price: "DT 14.000" },
-          { name: "Crêpe Nutella Fraise", price: "DT 16.000" },
-          { name: "Crepe Nutella Speculoos", price: "DT 16.000" },
-          { name: "Crêpe Nutella Banane", price: "DT 16.000 - DT 19.000" },
-          { name: "Crêpes Nutella OREO", price: "DT 16.000" },
-          { name: "Crêpes Nutella Amandes effilées", price: "DT 16.000" },
-          { name: "Crêpe Caramel Beurre salée", price: "DT 15.000 - DT 18.000" },
-          { name: "Crêpes DUBAÏ", price: "DT 19.000" },
-          { name: "Trio de Pancakes", price: "DT 10.000 - DT 12.000" },
-          { name: "Trio Pancakes Caramel Beurre Salée", price: "DT 13.000 - DT 16.000" },
-          { name: "Trio de Pancakes Nutella", price: "DT 14.000" },
-          { name: "Trio de Pancakes Nutella amande effilée", price: "DT 15.000" },
-          { name: "Trio de pancakes KINDER BUENO", price: "DT 16.000" },
-          { name: "Trio de Pancakes Nutella KINDER", price: "DT 16.000 - DT 16.000" },
-          { name: "Trio de Pancakes Nutella Speculoos", price: "DT 16.000" },
-          { name: "Trio de Pancakes Nutella Banane", price: "DT 18.000" },
-          { name: "Gaufre Sucre", price: "DT 10.000 - DT 12.000" },
-          { name: "Gaufre Nutella", price: "DT 15.000" },
-          { name: "Gaufre Nutella Boule de Glace", price: "DT 18.000" },
-          { name: "Pain perdu Miel ou Sirop d'érable", price: "DT 14.000 - DT 17.000" },
-          { name: "Pain Perdu Caramel beurre salée", price: "DT 13.000 - DT 16.000" },
-          { name: "Pain Perdu Nutella", price: "DT 15.000 - DT 18.000" },
-          { name: "Pain Perdu Fruits de saison", price: "DT 15.000" },
-          { name: "Pain Perdu DUBAI", price: "DT 17.000 - DT 20.000" }
+        "tab": "MOJITOS",
+        "icon": "fa-leaf",
+        "category": "MOJITOS",
+        "items": [
+          { "name": "VIRGIN MOJITO", "price": "DT 15.000", "desc": "Le roi des mocktails : menthe fraîche pilonnée, citron vert, sucre de canne et une cascade de glace pilée." },
+          { "name": "VIRGIN MOJITO Aromatiśé", "price": "DT 17.000", "desc": "Personnalisez votre fraîcheur avec nos saveurs de saison : Fruit de la Passion, Mangue, Framboise, Pêche ou Fraise." },
+          { "name": "MOJITO RED BULL", "price": "DT 20.000", "desc": "Une version énergisante du mojito classique avec une canette de Red Bull pour un boost de fraîcheur et de vitalité." }
         ]
       },
       {
-        tab: "Desserts",
-        category: "Pâtisserie Fine & Desserts",
-        items: [
-          { name: "Le Cookie GLACÉE", price: "DT 25.000" },
-          { name: "Mango Riviera", price: "DT 16.000" },
-          { name: "Coco Passion Pampelonne", price: "DT 17.000" },
-          { name: "Pistache Impériale", price: "DT 13.000" },
-          { name: "Dubai Glacé", price: "DT 24.000" },
-          { name: "Citron d'Azur", price: "DT 15.000" },
-          { name: "Rocher de la Côte d'Azur", price: "DT 23.000" },
-          { name: "Cheesecake Framboise", price: "DT 16.000" },
-          { name: "Cheesecake Speculoos", price: "DT 16.000" },
-          { name: "Cheesecake Pistache", price: "DT 17.000" },
-          { name: "FONDANT AU CHOCOLAT (maison)", price: "DT 15.000" },
-          { name: "Fondant Kinder (maison) avec boule de GLACE", price: "DT 16.000" },
-          { name: "FONDANT À LA PISTACHE (maison)", price: "DT 17.000" },
-          { name: "TIRAMISU CLASSIQUE", price: "DT 15.000" },
-          { name: "TIRAMISU NUTELLA DUBAÏ", price: "DT 18.000" },
-          { name: "ASSIETTE DE FRUITS FRAIS", price: "DT 27.000" },
-          { name: "Macarons", price: "DT 3.000" },
-          { name: "LE ROCHER", price: "DT 17.000" },
-          { name: "Pistachio Ruby", price: "DT 17.000" },
-          { name: "DOME CHOCOLAT BLANC PISTACHE", price: "DT 18.000" },
-          { name: "FORÊT NOIRE", price: "DT 17.000" },
-          { name: "TARTE SPECULOOS", price: "DT 18.000" },
-          { name: "TARTE MYRTILLES", price: "DT 16.000" },
-          { name: "TARTE PISTACHE", price: "DT 18.000" },
-          { name: "PATISSERIE DU JOUR", price: "DT 16.000" }
+        "tab": "BRIOCHE",
+        "icon": "fa-bread-slice",
+        "category": "BRIOCHE SIGNATURE",
+        "items": [
+          { "name": "Brioche Signature Pistache & Fraise", "price": "DT 21.000", "desc": "Brioche dorée et moelleuse, garnie d'un cœur fondant de crème pistache d'Iran et de fraises locales juteuses." },
+          { "name": "Brioche Signature Nutella", "price": "DT 19.000", "desc": "La gourmandise absolue : une brioche toastée à la perfection, fourrée généreusement au Nutella et éclats de noisettes." },
+          { "name": "Brioche Signature Speculoos", "price": "DT 20.000", "desc": "Un voyage en Belgique avec cette brioche artisanale à la crème de Speculoos et biscuits concassés pour le croquant." }
         ]
       },
       {
-        tab: "Jus",
-        category: "Jus Frais & Chocolats",
-        items: [
-          { name: "FRESH LEMON MINT", price: "DT 15.000" },
-          { name: "Orange", price: "DT 10.000" },
-          { name: "Citronnade", price: "DT 9.000" },
-          { name: "Fraise", price: "DT 9.000" },
-          { name: "Ananas Goyave Kiwi", price: "DT 10.000" },
-          { name: "CITRONNADE MENTHE", price: "DT 10.000" },
-          { name: "Citronnade Fraise", price: "DT 10.000" },
-          { name: "Fraise Banane", price: "DT 15.000" },
-          { name: "Chocolat au lait", price: "DT 8.000" },
-          { name: "Chocolat Chaud Classique", price: "DT 10.000" },
-          { name: "Iced Chocolat", price: "DT 11.000" },
-          { name: "Chocolat chaud & MARSHMALLOW", price: "DT 15.000" }
+        "tab": "CRÊPES",
+        "icon": "fa-stroopwafel",
+        "category": "CRÊPES SUCRÉES",
+        "items": [
+          { "name": "Crêpes Sucre / Miel", "price": "DT 10.000 - DT 12.000", "desc": "La simplicité raffinée d'une crêpe fine saupoudrée de sucre ou arrosée de miel pur de nos producteurs locaux." },
+          { "name": "Crêpes Nutella", "price": "DT 14.000", "desc": "Le plaisir indémodable de la célèbre pâte à tartiner sur une crêpe tiède et légère." },
+          { "name": "Crêpe Nutella Fraise", "price": "DT 16.000", "desc": "L'accord parfait entre le chocolat fondant et l'acidité sucrée des fraises fraîches de saison." },
+          { "name": "Crepe Nutella Speculoos", "price": "DT 16.000", "desc": "Une double dose de gourmandise associant le croquant du biscuit Speculoos et le fondant du chocolat." },
+          { "name": "Crêpe Nutella Banane", "price": "DT 16.000 - DT 19.000", "desc": "Le duo classique apprécié de tous, une crêpe généreuse, fondante et intensément réconfortante." },
+          { "name": "Crêpes Nutella OREO", "price": "DT 16.000", "desc": "Un contraste de textures irrésistible entre le moelleux de la crêpe et le croquant des biscuits Oreo concassés." },
+          { "name": "Crêpes Nutella Amandes effilées", "price": "DT 16.000", "desc": "Savourez des crêpes moelleuses généreusement nappées de Nutella et parsemées d'amandes grillées pour une note boisée." },
+          { "name": "Crêpe Caramel Beurre salée", "price": "DT 15.000 - DT 18.000", "desc": "Une gourmandise d'inspiration bretonne avec notre caramel maison au beurre salé et une pointe de fleur de sel." },
+          { "name": "Crêpes DUBAÏ", "price": "DT 19.000", "desc": "Succombez à notre Crêpe Nutella Pistache Kunefa : une fusion exquise et croustillante de saveurs orientales." }
         ]
       },
       {
-        tab: "Insta",
-        category: "Expériences Instagrammables",
-        items: [
-          { name: "LATTE INSTAGRAMMABLE DIOR", price: "DT 15.000" },
-          { name: "CHOCOLAT CHAUD OU FROID Instagrammable", price: "DT 15.000" },
-          { name: "GOURMAND INSTAGRAMMABLE", price: "DT 21.000" },
-          { name: "THÉ GOURMAND INSTAGRAMMABLE", price: "DT 25.000" },
-          { name: "L'expérience INSTA 2 PERS", price: "DT 35.000" }
+        "tab": "AIMÉS",
+        "icon": "fa-heart",
+        "category": "Les plus aimés",
+        "items": [
+          { "name": "Le Cookie GLACÉE", "price": "DT 25.000", "desc": "Une création gourmande à partager. Sous une coque glacée lisse se cache un cœur cookie fondant et incroyablement croustillant." },
+          { "name": "Mango Riviera", "price": "DT 16.000", "desc": "Une illusion parfaite inspirée des fruits d'été. Une coque lisse et lumineuse au goût intensément frais de mangue." },
+          { "name": "Coco Passion Pampelonne", "price": "DT 17.000", "desc": "Une illusion tropicale intensément rafraîchissante. Sous une coque coco craquante se révèle un cœur passion acidulé." },
+          { "name": "Pistache Impériale", "price": "DT 13.000", "desc": "Le luxe de la pistache travaillée en plusieurs textures, entre onctuosité suprême et croquant délicat." },
+          { "name": "Dubai Glacé", "price": "DT 24.000", "desc": "Une création intensément gourmande et rafraîchissante. Une glace pistache marbrée de chocolat et kunefa croustillant." }
+        ]
+      },
+      {
+        "tab": "GLACÉES",
+        "icon": "fa-ice-cream",
+        "category": "Les Pièces Glacées",
+        "items": [
+          { "name": "Citron d'Azur", "price": "DT 15.000", "desc": "Un citron plus vrai que nature... Sous une coque brillante aux notes acidulées se cache un sorbet plein fruit d'une grande finesse." },
+          { "name": "Rocher de la Côte d'Azur", "price": "DT 23.000", "desc": "Une sphère intensément gourmande aux allures de rocher de luxe. Chocolat croquant et cœur fondant praliné noisette." }
+        ]
+      },
+      {
+        "tab": "BRUNCH",
+        "icon": "fa-utensils",
+        "category": "BRUNCH DE 7H A 23H",
+        "items": [
+          { "name": "BRUNCH DIOR INSTAGRAMMABLE", "price": "DT 65.000", "desc": "L'expérience luxe ultime : 2 cafés au choix avec motifs Dior artistiques, accompagnés d'une sélection brunch premium." },
+          { "name": "BRUNCH 2 PERSONNES", "price": "DT 55.000", "desc": "Un festin complet à partager : Fromage, charcuterie fine, confiture, beurre, miel, pain baguette frais et œufs préparés à votre goût." },
+          { "name": "LE COMPLET", "price": "DT 28.000", "desc": "La tradition revisitée avec élégance : Pain Baguette, une viennoiserie pur beurre au choix et votre boisson chaude préférée." }
+        ]
+      },
+      {
+        "tab": "TARTINES",
+        "icon": "fa-egg",
+        "category": "TARTINES & OEUF BENEDICTE",
+        "items": [
+          { "name": "Oeuf Bénédicte nature", "price": "DT 15.000", "desc": "Deux œufs pochés à la perfection sur muffins toastés, nappés de notre sauce hollandaise onctueuse et secrète." },
+          { "name": "Oeuf Bénédicte jambon", "price": "DT 18.000", "desc": "La version classique avec jambon de dinde sélectionné servi sur une base de croissant croustillant et beurré." },
+          { "name": "Oeuf Bénédicte Saumon", "price": "DT 23.000", "desc": "L'élégance marine par excellence : saumon fumé de première qualité et œufs pochés au cœur coulant." },
+          { "name": "Oeuf Bénédicte Saumon Avocat", "price": "DT 27.000", "desc": "Le brunch iconique de La Marsa : avocat mûr, saumon fumé d'exception et œufs pochés sur croissant chaud." },
+          { "name": "Tartine oeuf brouillée", "price": "DT 15.000", "desc": "Pain artisanal toasté, œufs brouillés d'une texture incroyablement crémeuse et herbes fraîches du jardin." },
+          { "name": "Tartine oeuf brouillée Saumon frais", "price": "DT 18.000", "desc": "L'alliance parfaite des œufs crémeux et du saumon fumé sauvage sur une tranche de pain de campagne grillée." },
+          { "name": "Tartine Avocat Tomates Mozzarella", "price": "DT 18.000", "desc": "Une note de fraîcheur italienne : guacamole maison, tomates cerises confites et mozzarella di bufala." },
+          { "name": "Tartine avocat saumon frais", "price": "DT 22.000", "desc": "L'incontournable de la côte : avocat écrasé au citron vert, baies roses et fines tranches de saumon fumé." }
+        ]
+      },
+      {
+        "tab": "PANCAKES",
+        "icon": "fa-layer-group",
+        "category": "PANCAKES",
+        "items": [
+          { "name": "Trio de Pancakes", "price": "DT 10.000 - DT 12.000", "desc": "Trois pancakes légers, épais et aériens, servis traditionnellement avec sirop d'érable ou sucre glace." },
+          { "name": "Trio Pancakes Caramel Beurre Salée", "price": "DT 13.000 - DT 16.000", "desc": "Nappés de notre caramel onctueux fait maison pour un réveil tout en douceur et en gourmandise." },
+          { "name": "Trio de Pancakes Nutella", "price": "DT 14.000", "desc": "La dose de chocolat idéale sur des pancakes tout juste sortis de la poêle, pour les amoureux du cacao." },
+          { "name": "Trio de Pancakes Nutella amande effilée", "price": "DT 15.000", "desc": "L'élégance du Nutella soulignée par le croquant délicat des amandes grillées à la minute." },
+          { "name": "Trio de pancakes KINDER BUENO", "price": "DT 16.000", "desc": "Trio de pancakes moelleux nappés de crème Kinder Bueno fondante avec quelques pépites de chocolat croquantes." },
+          { "name": "Trio de Pancakes Nutella KINDER", "price": "DT 16.000 - DT 16.000", "desc": "Découvrez un trio de pancakes moelleux, généreusement nappés de chocolat fondant et morceaux de Kinder originaux." },
+          { "name": "Trio de Pancakes Nutella Speculoos", "price": "DT 16.000", "desc": "Un mariage de saveurs épicées et chocolatées pour les gourmets en quête de sensations." },
+          { "name": "Trio de Pancakes Nutella Banane", "price": "DT 18.000", "desc": "Le grand classique fruité et chocolaté, l'alliance parfaite pour faire le plein d'énergie positive." }
+        ]
+      },
+      {
+        "tab": "GAUFRES",
+        "icon": "fa-square",
+        "category": "GAUFRES",
+        "items": [
+          { "name": "Gaufre Sucre", "price": "DT 10.000 - DT 12.000", "desc": "Gaufre de Bruxelles authentique, croustillante à l'extérieur et fondante à l'intérieur, saupoudrée de sucre fin." },
+          { "name": "Gaufre Nutella", "price": "DT 15.000", "desc": "Un plaisir croustillant nappé généreusement de la célèbre pâte à tartiner pour un moment de pur délice." },
+          { "name": "Gaufre Nutella Boule de Glace", "price": "DT 18.000", "desc": "Le dessert ultime : gaufre chaude, cascade de Nutella et une boule de glace vanille bourbon premium." }
+        ]
+      },
+      {
+        "tab": "PAIN",
+        "icon": "fa-bread-slice",
+        "category": "PAIN PERDU / FRENCH TOAST X2",
+        "items": [
+          { "name": "Pain perdu Miel ou Sirop d'érable", "price": "DT 14.000 - DT 17.000", "desc": "Pain perdu doré à la perfection, imbibé d'une douce saveur de miel de fleurs ou de sirop d'érable pur du Canada." },
+          { "name": "Pain Perdu Caramel beurre salée", "price": "DT 13.000 - DT 16.000", "desc": "Pain Perdu moelleux, délicatement doré au beurre, nappé d'un caramel beurre salé maison onctueux et addictif." },
+          { "name": "Pain Perdu Nutella", "price": "DT 15.000 - DT 18.000", "desc": "Pain perdu croquant en surface, nappé d'une généreuse couche de Nutella fondant pour un plaisir intense." },
+          { "name": "Pain Perdu Fruits de saison", "price": "DT 15.000", "desc": "Délices d'épices chaudes sur un pain doré à la poêle, accompagnés de fruits frais sélectionnés chaque matin au marché." },
+          { "name": "Pain Perdu DUBAI", "price": "DT 17.000 - DT 20.000", "desc": "Savourez une fusion exquise de Nutella crémeux, pistaches croquantes d'Iran et Kunefa délicatement grillé à la main." }
+        ]
+      },
+      {
+        "tab": "VIENNOISERIE",
+        "icon": "fa-cookie",
+        "category": "VIENNOISERIE",
+        "items": [
+          { "name": "PAIN AU CHOCOLAT", "price": "DT 3.500", "desc": "Le feuilletage pur beurre croustillant et son cœur double barre de chocolat noir intense." },
+          { "name": "CROISSANT", "price": "DT 3.000", "desc": "L'indispensable du matin, préparé selon la plus pure tradition boulangère française avec un beurre de qualité." },
+          { "name": "Croissant Nutella", "price": "DT 8.000", "desc": "Croissant frais du matin, généreusement fourré au Nutella pour une explosion de gourmandise." },
+          { "name": "Croissant fourré à la Pistache & Nutella", "price": "DT 9.000", "desc": "Une spécialité de notre maison alliant deux crèmes fondantes pour un équilibre parfait entre force et douceur." },
+          { "name": "Pain au Chocolat Nutella Pistache", "price": "DT 9.500", "desc": "Découvrez notre Pain au Chocolat revisité avec une touche de crème pistache et un nappage Nutella." },
+          { "name": "Croissant nutella Banane", "price": "DT 9.500", "desc": "Le mariage parfait du fruit frais et du chocolat fondant dans un croissant croustillant." }
+        ]
+      },
+      {
+        "tab": "CHEESECAKES",
+        "icon": "fa-cheese",
+        "category": "CHEESECAKES",
+        "items": [
+          { "name": "Cheesecake Framboise", "price": "DT 16.000", "desc": "Fraise, Oreo, Snickers, Kinder Bueno, Caramel au choix sur une base sablée croustillante." },
+          { "name": "Cheesecake Speculoos", "price": "DT 16.000", "desc": "L'onctuosité du fromage frais mariée au parfum unique et épicé du célèbre biscuit Speculoos." },
+          { "name": "Cheesecake Pistache", "price": "DT 17.000", "desc": "Une version raffinée aux éclats de pistaches grillées pour une saveur boisée et crémeuse." }
+        ]
+      },
+      {
+        "tab": "FONDANTS",
+        "icon": "fa-cake-candles",
+        "category": "Les Délices Fondants",
+        "items": [
+          { "name": "FONDANT AU CHOCOLAT (maison)", "price": "DT 15.000", "desc": "Plongez dans notre exquis Fondant au Chocolat fait maison, au cœur coulant servi avec sa boule de glace vanille." },
+          { "name": "Fondant Kinder (maison) avec boule de GLACE", "price": "DT 16.000", "desc": "Découvrez notre Fondant Kinder, une alliance gourmande et régressive de chocolat fondant et de lait." },
+          { "name": "FONDANT À LA PISTACHE (maison)", "price": "DT 17.000", "desc": "Une explosion de saveurs avec son cœur coulant à la pistache d'Iran, servi avec une boule de glace." }
+        ]
+      },
+      {
+        "tab": "TIRAMISU",
+        "icon": "fa-spoon",
+        "category": "TIRAMISU MAISON",
+        "items": [
+          { "name": "TIRAMISU CLASSIQUE", "price": "DT 15.000", "desc": "Délectable mariage de mascarpone crémeux, café Espresso Illy et biscuits imbibés selon la recette vénitienne." },
+          { "name": "TIRAMISU NUTELLA DUBAÏ", "price": "DT 18.000", "desc": "L'Orient rencontre l'Italie dans ce tiramisu revisité au Nutella et croustillant de Kunefa fait main." },
+          { "name": "ASSIETTE DE FRUITS FRAIS", "price": "DT 27.000", "desc": "Une symphonie colorée de fruits de saison, fraîchement tranchés pour une fin de repas légère et vitaminée." }
+        ]
+      },
+      {
+        "tab": "PATISSERIE",
+        "icon": "fa-cake-slice",
+        "category": "PATISSERIE",
+        "items": [
+          { "name": "Macarons", "price": "DT 3.000", "desc": "Vanille, chocolat, café, noisette, fraise ou framboise : l'excellence parisienne à chaque bouchée." },
+          { "name": "LE ROCHER", "price": "DT 17.000", "desc": "Entremets chocolaté inspiré de la célèbre confiserie, avec un cœur praliné et une coque rocher." },
+          { "name": "Pistachio Ruby", "price": "DT 17.000", "desc": "Alliance rare et visuelle entre le chocolat rose Ruby naturellement fruité et la pistache intense." },
+          { "name": "DOME CHOCOLAT BLANC PISTACHE", "price": "DT 18.000", "desc": "Un dôme aérien au chocolat blanc ivoire et son cœur pistache crémeux sur un sablé croquant." },
+          { "name": "FORÊT NOIRE", "price": "DT 17.000", "desc": "L'équilibre parfait entre la cerise griotte, la crème chantilly légère et le chocolat noir intense." },
+          { "name": "TARTE SPECULOOS", "price": "DT 18.000", "desc": "Pâte sablée craquante et ganache montée onctueuse au Speculoos pour les amateurs de saveurs épicées." },
+          { "name": "TARTE MYRTILLES", "price": "DT 16.000", "desc": "La force et la fraîcheur des baies sauvages déposées sur une crème pâtissière légère et fine." },
+          { "name": "TARTE PISTACHE", "price": "DT 18.000", "desc": "Sablé croquant et crème onctueuse à la pistache d'Iran, décorée de pistaches entières torréfiées." },
+          { "name": "PATISSERIE DU JOUR", "price": "DT 16.000", "desc": "Découvrez chaque matin une nouvelle création exclusive de notre chef pâtissier selon les arrivages." }
+        ]
+      },
+      {
+        "tab": "ASSIETTES",
+        "icon": "fa-plate-wheat",
+        "category": "ASSIETTE GOURMANDE",
+        "items": [
+          { "name": "Assiette Énergie", "price": "DT 18.000", "desc": "Deux œufs au plat parfaitement cuits, servis avec accompagnements protéinés pour un apport complet." },
+          { "name": "Délices Matinal", "price": "DT 23.000", "desc": "Une sélection généreuse et colorée pour un réveil savoureux, équilibré et plein de vitalité." },
+          { "name": "Assiette Brunch Nordique", "price": "DT 28.000", "desc": "Inspiration scandinave associant saumon fumé d'exception, œufs frais et accompagnements de saison." }
+        ]
+      },
+      {
+        "tab": "OEUFS",
+        "icon": "fa-egg",
+        "category": "NOS OEUFS",
+        "items": [
+          { "name": "OMELETTE NATURE", "price": "DT 7.000", "desc": "Simple et parfaite, cuite à la commande selon vos préférences de texture, assaisonnée d'une pointe de sel marin." },
+          { "name": "OEUF AU PLAT", "price": "DT 7.000", "desc": "Deux œufs frais de ferme cuits avec soin, pour un petit-déjeuner protéiné et authentique." },
+          { "name": "2 Oeuf à la Coque", "price": "DT 8.000", "desc": "Servis avec leurs traditionnelles mouillettes beurrées et croquantes pour un plaisir régressif et savoureux." },
+          { "name": "OEUF BROUILLÉE", "price": "DT 7.000", "desc": "Une texture onctueuse et fondante, cuits à feu très doux pour une légèreté exceptionnelle." },
+          { "name": "Omelette Fromage", "price": "DT 10.000", "desc": "Garnie d'un mélange de fromages fondants sélectionnés pour leur caractère et leur onctuosité." },
+          { "name": "OMELETTE JAMBON FROMAGE", "price": "DT 12.000", "desc": "L'alliance classique et rassasiante du jambon de dinde fumé et d'un emmental de qualité supérieure." },
+          { "name": "OMELETTE THON FROMAGE", "price": "DT 14.000", "desc": "Saveurs méditerranéennes affirmées avec un thon de premier choix et un fromage fondant." },
+          { "name": "OMELETTE CHAMPIGNONS", "price": "DT 15.000", "desc": "Champignons de Paris frais, sautés à la minute avec une touche d'ail et de persil plat." }
+        ]
+      },
+      {
+        "tab": "JUS",
+        "icon": "fa-blender",
+        "category": "JUS DE FRUITS FRAIS",
+        "items": [
+          { "name": "FRESH LEMON MINT", "price": "DT 15.000", "desc": "La fraîcheur absolue de La Marsa : Menthe fraîche pilonnée, citronnade maison pressée et glace pilée." },
+          { "name": "Orange", "price": "DT 10.000", "desc": "Pressée à la minute devant vous pour un maximum de vitamines et une saveur ensoleillée." },
+          { "name": "Citronnade", "price": "DT 9.000", "desc": "La recette traditionnelle tunisienne, préparée avec des citrons bio et un juste équilibre de sucre." },
+          { "name": "Fraise", "price": "DT 9.000", "desc": "Nectar de fraises fraîches de saison, mixé minute pour une texture douce et un parfum envoûtant." },
+          { "name": "Ananas Goyave Kiwi", "price": "DT 10.000", "desc": "Un cocktail exotique, revitalisant et vitaminé aux saveurs lointaines et sucrées." },
+          { "name": "CITRONNADE MENTHE", "price": "DT 10.000", "desc": "Le twist rafraîchissant de la menthe fraîche dans notre citronnade artisanale signature." },
+          { "name": "Citronnade Fraise", "price": "DT 10.000", "desc": "Un mariage harmonieux, fruité et acidulé pour une pause colorée face à la mer." },
+          { "name": "Fraise Banane", "price": "DT 15.000", "desc": "Smoothie onctueux, nourrissant et naturellement sucré, préparé uniquement avec des fruits frais." }
+        ]
+      },
+      {
+        "tab": "CHOCOLATS",
+        "icon": "fa-mug-saucer",
+        "category": "CHOCOLATS CHAUD OU FROID",
+        "items": [
+          { "name": "Chocolat au lait", "price": "DT 8.000", "desc": "Cacao fin sélectionné mélangé à du lait entier onctueux pour un plaisir simple." },
+          { "name": "Chocolat Chaud Classique", "price": "DT 10.000", "desc": "Recette onctueuse et réconfortante à l'italienne, dense et intensément chocolatée." },
+          { "name": "Iced Chocolat", "price": "DT 11.000", "desc": "La version frappée et rafraîchissante du délice chocolaté, servie sur un lit de glace." },
+          { "name": "Chocolat chaud & MARSHMALLOW", "price": "DT 15.000", "desc": "Garni de guimauves fondantes et légèrement toastées pour un moment de pur cocooning." }
+        ]
+      },
+      {
+        "tab": "INSTA",
+        "icon": "fa-camera-retro",
+        "category": "INSTAGRAMMABLE",
+        "items": [
+          { "name": "LATTE INSTAGRAMMABLE DIOR", "price": "DT 15.000", "desc": "Un latte artistique unique arborant un motif haute couture à la surface de la mousse, parfait pour vos moments partagés." },
+          { "name": "CHOCOLAT INSTAGRAMMABLE", "price": "DT 15.000", "desc": "Sublimez votre pause chocolatée avec des visuels créatifs, élégants et une finition artistique d'exception." },
+          { "name": "GOURMAND INSTAGRAMMABLE", "price": "DT 21.000", "desc": "Votre boisson chaude préférée accompagnée d'une sélection de mignardises aussi esthétiques que savoureuses." },
+          { "name": "THÉ GOURMAND INSTAGRAMMABLE", "price": "DT 25.000", "desc": "Un thé vert à la menthe servi pour deux personnes, avec un cérémonial raffiné et une présentation digne des plus grands palaces." },
+          { "name": "L'expérience INSTA 2 PERS", "price": "DT 35.000", "desc": "Le thé au vert à la Menthe ultime pour 2 personnes, servi dans un service Dior d'exception pour des souvenirs mémorables." }
         ]
       }
     ];
 
     const landingView = document.getElementById('landing-view');
-    const menuView    = document.getElementById('menu-view');
-    const tabsEl      = document.getElementById('menuTabsScrollContainer');
-    const gridEl      = document.getElementById('menuCategoriesGrid');
-    const stickyHeaderGroup = document.getElementById('menuStickyHeaderGroup');
-
-    let activeCat = 0;
-    let isScrollingClick = false;
-    let scrollTimeout;
-    let savedScrollY = 0;
+    const menuView = document.getElementById('menu-view');
+    const tabsEl = document.getElementById('menuTabsScrollContainer');
+    const gridEl = document.getElementById('menuCategoriesGrid');
+    const stickyHeader = document.getElementById('menuStickyHeaderGroup');
 
     function buildMenuPage() {
-      tabsEl.innerHTML = menuData.map((g, i) =>
-        `<button class="menu-tab-btn ${i === 0 ? 'active' : ''}" data-i="${i}">${g.tab}</button>`
-      ).join('');
-
+      tabsEl.innerHTML = menuData.map((g, i) => `<button class="menu-tab-btn ${i === 0 ? 'active' : ''}" onclick="scrollToCat(${i}, this)" data-i="${i}">${g.tab}</button>`).join('');
       gridEl.innerHTML = menuData.map((g, gi) => `
-        <section class="menu-cat-section" id="cat-sec-${gi}" data-ci="${gi}">
+        <section class="menu-cat-section" id="cat-sec-${gi}">
           <div class="menu-card">
             <div class="category-header">
+              <i class="fa-solid ${g.icon}"></i>
               <h2 class="serif">${g.category}</h2>
               <div class="category-line"></div>
             </div>
             <div class="menu-list">
-              ${g.items.map(item => `
-                <div class="item-row">
-                  <span class="item-name">${item.name}</span>
-                  <span class="item-price">${item.price}</span>
+              ${g.items.map((item, ii) => `
+                <div class="item-row" onclick="toggleExpand(this)">
+                  <div class="item-main">
+                    <span class="item-name">${item.name}</span>
+                    <span class="item-price">${item.price}</span>
+                  </div>
+                  <div class="item-details">
+                    <p class="item-desc">${item.desc || "Découvrez l'excellence de nos créations artisanales, préparées avec passion pour un moment d'exception sur la Riviera."}</p>
+                  </div>
                 </div>
               `).join('')}
             </div>
@@ -1191,116 +537,62 @@
       `).join('');
     }
 
-    function navigateToMenu(push = true) {
-      savedScrollY = window.scrollY;
-      landingView.style.transform = 'scale(0.98)';
-      landingView.style.opacity = '0';
+    window.toggleExpand = (el) => {
+      const isExpanded = el.classList.contains('expanded');
+      document.querySelectorAll('.item-row').forEach(row => row.classList.remove('expanded'));
+      if (!isExpanded) el.classList.add('expanded');
+    };
 
-      setTimeout(() => {
-        landingView.classList.add('view-hidden');
-        menuView.classList.remove('view-hidden');
-        menuView.style.opacity = '0';
-        menuView.style.transform = 'translateY(15px)';
-        window.scrollTo({ top: 0, behavior: 'instant' });
-        requestAnimationFrame(() => {
-          menuView.style.opacity = '1';
-          menuView.style.transform = 'translateY(0)';
-        });
-      }, 600);
-      if (push) history.pushState({ view: 'menu' }, '', '/saint-tropez');
+    window.scrollToCat = (i, btn) => {
+      document.querySelectorAll('.menu-tab-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const target = document.getElementById(`cat-sec-${i}`);
+      const offset = stickyHeader.offsetHeight;
+      const targetY = target.getBoundingClientRect().top + window.pageYOffset - offset + 10;
+      window.scrollTo({ top: targetY, behavior: 'smooth' });
+    };
+
+    function navigateToMenu() {
+      landingView.classList.add('view-hidden');
+      menuView.classList.remove('view-hidden');
+      window.scrollTo(0, 0);
+      history.pushState({ view: 'menu' }, '', '/saint-tropez');
     }
 
-    function navigateToLanding(push = true) {
-      menuView.style.opacity = '0';
-      menuView.style.transform = 'translateY(15px)';
-
-      setTimeout(() => {
-        menuView.classList.add('view-hidden');
-        landingView.classList.remove('view-hidden');
-        landingView.style.opacity = '0';
-        landingView.style.transform = 'scale(1.02)';
-        window.scrollTo({ top: savedScrollY, behavior: 'instant' });
-        requestAnimationFrame(() => {
-          landingView.style.opacity = '1';
-          landingView.style.transform = 'scale(1)';
-        });
-      }, 600);
-      if (push) history.pushState({ view: 'landing' }, '', '/');
+    function navigateToLanding() {
+      menuView.classList.add('view-hidden');
+      landingView.classList.remove('view-hidden');
+      history.pushState({ view: 'landing' }, '', '/');
     }
 
     window.addEventListener('popstate', (event) => {
       if (event.state && event.state.view === 'menu') {
-        navigateToMenu(false);
+        landingView.classList.add('view-hidden');
+        menuView.classList.remove('view-hidden');
       } else {
-        navigateToLanding(false);
+        navigateToLanding();
       }
     });
 
-    tabsEl.addEventListener('click', e => {
-      const tab = e.target.closest('.menu-tab-btn');
-      if (!tab) return;
-      activeCat = parseInt(tab.dataset.i);
-      tabsEl.querySelectorAll('.menu-tab-btn').forEach(t => t.classList.remove('active'));
-      tab.classList.add('active');
-      const target = document.getElementById(`cat-sec-${activeCat}`);
-      if (target) {
-        isScrollingClick = true;
-        clearTimeout(scrollTimeout);
-        const yOffset = -stickyHeaderGroup.offsetHeight;
-        const yPosition = target.getBoundingClientRect().top + window.pageYOffset + yOffset;
-        window.scrollTo({ top: yPosition, behavior: 'smooth' });
-        scrollTimeout = setTimeout(() => { isScrollingClick = false; }, 850);
-      }
-    });
-
-    window.addEventListener('scroll', () => {
-      if (isScrollingClick || menuView.classList.contains('view-hidden')) return;
-      const sections = document.querySelectorAll('.menu-cat-section');
-      const offset = stickyHeaderGroup.offsetHeight;
-
-      if ((window.innerHeight + window.scrollY) >= document.documentElement.scrollHeight - 50) {
-        highlightTab(sections.length - 1);
-        return;
-      }
-
-      let currentActiveIdx = -1;
-      sections.forEach((sec, i) => {
-        const top = sec.getBoundingClientRect().top;
-        if (top <= offset + 50) {
-          currentActiveIdx = i;
-        }
-      });
-
-      if (currentActiveIdx !== -1) {
-        highlightTab(currentActiveIdx);
-      }
-    }, { passive: true });
-
-    function highlightTab(idx) {
-      if (idx !== activeCat) {
-        activeCat = idx;
-        tabsEl.querySelectorAll('.menu-tab-btn').forEach(t => t.classList.remove('active'));
-        const activeTab = tabsEl.querySelector(`[data-i="${idx}"]`);
-        if (activeTab) {
-          activeTab.classList.add('active');
-          activeTab.scrollIntoView({ behavior: 'auto', block: 'nearest', inline: 'center' });
-        }
-      }
+    function toggleTheme() {
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', theme);
+      localStorage.setItem('theme', theme);
+      const icon = document.querySelector('.theme-toggle-pro i');
+      if(icon) icon.className = theme === 'dark' ? 'fa-solid fa-sun' : 'fa-solid fa-moon';
     }
 
-    const revealObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('revealed');
-          revealObserver.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
-
-    document.querySelectorAll('.section').forEach(sec => revealObserver.observe(sec));
+    function initTheme() {
+      const saved = localStorage.getItem('theme');
+      const hour = new Date().getHours();
+      const theme = saved || (hour >= 19 || hour < 7 ? 'dark' : 'light');
+      document.documentElement.setAttribute('data-theme', theme);
+      const icon = document.querySelector('.theme-toggle-pro i');
+      if (icon) icon.className = theme === 'dark' ? 'fa-solid fa-sun' : 'fa-solid fa-moon';
+    }
 
     buildMenuPage();
+    initTheme();
   </script>
-
 </body>
 </html>
