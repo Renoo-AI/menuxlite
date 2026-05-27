@@ -26,11 +26,8 @@ async def main():
         await page.wait_for_timeout(1000)
         await page.screenshot(path="verification/menu_top_final.png")
 
-        # 4. Featured Item in Menu
-        await page.screenshot(path="verification/menu_featured_final.png")
-
         # 5. Open Modal
-        await page.click('.menu-item-row.featured')
+        await page.click('.menu-item-row')
         await page.wait_for_timeout(1000)
         await page.screenshot(path="verification/menu_modal_final.png")
 

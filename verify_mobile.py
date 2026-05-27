@@ -29,7 +29,7 @@ async def main():
         await page.screenshot(path="verification/mobile_menu_brunch.png")
 
         # 4. Open Item Modal on Mobile
-        await page.click('.menu-item-row.featured >> nth=0')
+        await page.click('.menu-item-row >> nth=0')
         await page.wait_for_timeout(1000)
         await page.screenshot(path="verification/mobile_modal.png")
 
