@@ -13,31 +13,31 @@
 
   <style>
     :root {
-      --cream: #FAF6F0;
-      --linen: #F2EDE4;
+      --cream: #FAF8F5;
+      --linen: #F3EFE9;
       --white: #FFFFFF;
-      --text: #261A14;
-      --muted: #7A6B62;
-      --light: #A89A91;
-      --gold: #B8814E;
-      --border: rgba(38, 26, 20, 0.06);
-      --shadow: 0 12px 40px rgba(38, 26, 20, 0.05);
+      --text: #1A1412;
+      --muted: #6B5E56;
+      --light: #9E9088;
+      --gold: #AF835D;
+      --border: rgba(26, 20, 18, 0.05);
+      --shadow: 0 20px 50px rgba(26, 20, 18, 0.04);
 
       --serif: 'Cinzel', Georgia, serif;
       --sans: 'Plus Jakarta Sans', system-ui, sans-serif;
-      --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      --transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
-    /* Dark Mode Variables */
+    /* Dark Mode Variables — Night Chocolate Riviera */
     [data-theme="dark"] {
-      --cream: #0F0A08;
-      --linen: #1A1310;
-      --white: #160F0C;
-      --text: #F2EDE4;
-      --muted: #A89A91;
-      --light: #7A6B62;
-      --border: rgba(242, 237, 228, 0.1);
-      --shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+      --cream: #0D0907;
+      --linen: #14100E;
+      --white: #110D0B;
+      --text: #E8E2DD;
+      --muted: #9E9088;
+      --light: #6B5E56;
+      --border: rgba(232, 226, 221, 0.08);
+      --shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -72,20 +72,20 @@
     /* ── Typography ── */
     h1, h2, h3, .serif {
       font-family: var(--serif);
-      font-weight: 500;
-      letter-spacing: 0.04em;
-      line-height: 1.15;
+      font-weight: 400;
+      letter-spacing: 0.06em;
+      line-height: 1.1;
     }
 
     .tag {
-      font-size: 0.75rem;
+      font-size: 0.7rem;
       text-transform: uppercase;
-      letter-spacing: 0.3em;
+      letter-spacing: 0.4em;
       color: var(--gold);
       font-weight: 600;
       display: block;
-      margin-bottom: 1rem;
-      opacity: 0.8;
+      margin-bottom: 1.25rem;
+      opacity: 0.9;
     }
 
     /* ── Layout ── */
@@ -97,10 +97,10 @@
     }
 
     .section {
-      padding: 8rem 0;
+      padding: 10rem 0;
       opacity: 0;
-      transform: translateY(30px);
-      transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1), transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+      transform: translateY(40px);
+      transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1), transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     .section.revealed {
@@ -114,10 +114,17 @@
     }
 
     .section-head h2 {
-      font-size: clamp(2rem, 6vw, 3.2rem);
-      margin-top: 0.5rem;
+      font-size: clamp(2.2rem, 7vw, 3.8rem);
+      margin-top: 0.75rem;
       font-weight: 400;
+      letter-spacing: 0.08em;
     }
+
+    /* ── Utility ── */
+    .text-center { text-align: center; }
+    .mt-1 { margin-top: 1rem; }
+    .mt-2 { margin-top: 2rem; }
+    .mt-3 { margin-top: 3rem; }
 
     /* ── Buttons ── */
     .btn {
@@ -261,30 +268,32 @@
     }
 
     .hero h1 {
-      font-size: clamp(3.2rem, 12vw, 7rem);
+      font-size: clamp(3.5rem, 14vw, 8.5rem);
       font-weight: 400;
-      letter-spacing: 0.08em;
-      margin-bottom: 0.5rem;
-      text-shadow: 0 4px 30px rgba(0,0,0,0.3);
+      letter-spacing: 0.12em;
+      margin-bottom: 1.25rem;
+      line-height: 0.95;
+      text-shadow: 0 10px 40px rgba(0,0,0,0.25);
     }
 
     .hero .loc {
-      font-size: clamp(0.9rem, 2.8vw, 1.2rem);
-      letter-spacing: 0.35em;
+      font-size: clamp(0.85rem, 2.5vw, 1.1rem);
+      letter-spacing: 0.5em;
       text-transform: uppercase;
-      color: rgba(255,255,255,0.85);
-      font-weight: 300;
+      color: rgba(255,255,255,0.9);
+      font-weight: 400;
       display: block;
-      margin-bottom: 2rem;
+      margin-bottom: 2.5rem;
     }
 
     .hero .lead {
-      font-size: clamp(1.05rem, 3vw, 1.25rem);
+      font-size: clamp(1rem, 2.8vw, 1.2rem);
       font-weight: 300;
-      color: rgba(255,255,255,0.9);
-      max-width: 550px;
-      margin: 0 auto 2.5rem;
-      line-height: 1.7;
+      color: rgba(255,255,255,0.85);
+      max-width: 600px;
+      margin: 0 auto 3rem;
+      line-height: 1.8;
+      letter-spacing: 0.02em;
     }
 
     .scroll-indicator {
@@ -342,19 +351,23 @@
       /* Menu specific mobile tweaks */
       .menu-page-header { padding: 0.85rem 0; }
       .menu-header-left h2 { font-size: 1.4rem; }
-      .btn-return { padding: 8px 12px; gap: 8px; }
-      .menu-tabs-scroll { gap: 1.25rem; }
-      .menu-tab-btn { font-size: 0.85rem; }
+      .btn-return { padding: 8px 12px; gap: 8px; border-radius: 2px; }
+      .menu-tabs-scroll { gap: 1rem; }
+      .menu-tab-btn { font-size: 0.75rem; letter-spacing: 0.15em; padding: 10px 4px; }
+
+      .menu-item-row { gap: 1rem; }
+      .menu-item-thumb { width: 70px; height: 70px; }
 
       .menu-item-row.featured {
-        padding: 1.25rem;
+        padding: 1.5rem 1rem;
+        margin: 0.5rem -0.5rem;
       }
       .menu-item-row.featured .menu-item-thumb {
-        width: 80px;
-        height: 80px;
+        width: 75px;
+        height: 75px;
       }
       .menu-item-row.featured .menu-item-name {
-        font-size: 1.1rem;
+        font-size: 1.05rem;
       }
     }
 
@@ -379,7 +392,7 @@
     .grid {
       display: grid;
       grid-template-columns: 1fr;
-      gap: 2rem;
+      gap: 3rem;
     }
 
     @media (min-width: 600px) {
@@ -420,9 +433,9 @@
     }
 
     .card-body h3 {
-      font-size: 1.1rem;
-      margin-bottom: 0.3rem;
-      letter-spacing: 0.02em;
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
+      letter-spacing: 0.04em;
     }
 
     .card-body .desc {
@@ -438,7 +451,37 @@
       font-weight: 600;
     }
 
-    /* ── 4. Contact / Location ── */
+    /* ── 4. Editorial Quote ── */
+    .editorial-quote {
+      background: var(--cream);
+      text-align: center;
+      padding: 12rem 0;
+    }
+
+    .editorial-quote blockquote {
+      max-width: 900px;
+      margin: 0 auto;
+      font-family: var(--serif);
+      font-size: clamp(1.8rem, 5vw, 3.2rem);
+      line-height: 1.3;
+      color: var(--text);
+      font-weight: 400;
+      position: relative;
+    }
+
+    .editorial-quote cite {
+      display: block;
+      margin-top: 3rem;
+      font-family: var(--sans);
+      font-style: normal;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.4em;
+      color: var(--gold);
+      font-weight: 600;
+    }
+
+    /* ── 5. Contact / Location ── */
     .contact {
       background: var(--linen);
     }
@@ -772,36 +815,47 @@
     .menu-cat-items {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 2rem 3rem;
+      gap: 3rem 4rem;
     }
 
     @media (max-width: 768px) {
       .menu-cat-items {
         grid-template-columns: 1fr;
-        gap: 1.5rem;
+        gap: 2rem;
       }
     }
 
     .menu-item-row {
       display: flex;
-      gap: 1.25rem;
-      padding: 1.25rem;
-      border-bottom: 1px solid rgba(38, 26, 20, 0.04);
+      gap: 1.5rem;
+      padding: 1.5rem 0;
+      border-bottom: 1px solid var(--border);
       align-items: flex-start;
       transition: var(--transition);
-      border-radius: 8px;
     }
 
     .menu-item-row:hover {
-      background: rgba(255, 255, 255, 0.5);
+      opacity: 0.7;
     }
 
     /* Featured / Signature item specific styles */
     .menu-item-row.featured {
       background: var(--white);
-      box-shadow: 0 4px 15px rgba(0,0,0,0.03);
-      border-left: 3px solid var(--gold);
-      padding: 1.75rem 1.25rem;
+      box-shadow: var(--shadow);
+      padding: 2.5rem 2rem;
+      margin: 1rem -1rem;
+      border-radius: 4px;
+      border-bottom: none;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .menu-item-row.featured::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; bottom: 0;
+      width: 4px;
+      background: var(--gold);
     }
 
     .menu-item-row.featured .menu-item-name {
@@ -842,27 +896,22 @@
     }
 
     .menu-item-name {
-      font-size: 1.05rem;
-      font-weight: 600;
+      font-size: 1.1rem;
+      font-weight: 500;
       color: var(--text);
       line-height: 1.3;
+      letter-spacing: 0.02em;
     }
 
     /* Premium signature marker */
     .menu-signature-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 3px;
-      font-size: 0.6rem;
+      display: block;
+      font-size: 0.65rem;
       text-transform: uppercase;
-      letter-spacing: 0.05em;
+      letter-spacing: 0.15em;
       color: var(--gold);
       font-weight: 700;
-      margin-left: 6px;
-      background: rgba(184, 129, 78, 0.08);
-      padding: 1px 6px;
-      border-radius: 2px;
-      vertical-align: middle;
+      margin-bottom: 0.5rem;
     }
 
     .menu-item-price {
@@ -1047,15 +1096,25 @@
           </article>
 
         </div>
-        <div class="text-center mt-2" style="display: flex; flex-direction: column; align-items: center;">
-          <button class="btn btn-line" style="margin: 0 auto;" onclick="navigateToMenu()">Voir le menu complet</button>
+        <div class="text-center mt-2">
+          <button class="btn btn-line" onclick="navigateToMenu()">Voir le menu complet</button>
           <br>
           <small style="color:var(--light);margin-top:0.5rem;display:inline-block;font-size:0.75rem;">Menu digital by Menux Lite</small>
         </div>
       </div>
     </section>
 
-    <!-- 4. Contact / Location -->
+    <!-- 4. Editorial Quote -->
+    <section class="section editorial-quote">
+      <div class="container">
+        <blockquote>
+          “Le luxe n’est pas le contraire de la pauvreté, mais celui de la vulgarité.”
+          <cite>La Riviera Spirit</cite>
+        </blockquote>
+      </div>
+    </section>
+
+    <!-- 5. Contact / Location -->
     <section class="section contact">
       <div class="container">
         <div class="section-head">
@@ -1242,6 +1301,7 @@
           { name: "Mango Riviera", desc: "Coque lisse et lumineuse, fraîcheur tropicale.", price: "DT 16.000", signature: true, img: "https://images.pexels.com/photos/9840174/pexels-photo-9840174.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=200&h=200" },
           { name: "Coco Passion Pampelonne", desc: "Illusion tropicale rafraîchissante.", price: "DT 17.000", img: "https://images.pexels.com/photos/1092730/pexels-photo-1092730.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=200&h=200" },
           { name: "Dubaï Glacé", desc: "Glace pistache onctueuse, kunefa croustillant.", price: "DT 24.000", signature: true, img: "https://images.pexels.com/photos/35225700/pexels-photo-35225700.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=200&h=200" },
+          { name: "Pistache Impériale", desc: "Mousseline légère à la pistache d'Iran, cœur praliné croustillant.", price: "DT 18.000", signature: true, img: "https://images.pexels.com/photos/1854652/pexels-photo-1854652.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=200&h=200" },
           { name: "Brioche Pistache & Fraise", desc: "Brioche dorée, cœur fondant de crème pistache.", price: "DT 21.000", img: "https://images.pexels.com/photos/1826084/pexels-photo-1826084.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=200&h=200" },
           { name: "Pain Perdu Caramel Beurre Salé", desc: "Moelleux, doré, caramel beurre salé maison.", price: "DT 13.000 - 16.000", img: "https://images.pexels.com/photos/4110543/pexels-photo-4110543.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=200&h=200" },
           { name: "Pain Perdu DUBAÏ", desc: "Nutella, pistaches croquantes et kunefa.", price: "DT 17.000 - 20.000", img: "https://images.pexels.com/photos/1854652/pexels-photo-1854652.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=200&h=200" },
@@ -1330,8 +1390,8 @@
                 <div class="menu-item-info">
                   <div class="menu-item-header">
                     <span class="menu-item-name">
-                      ${item.name}
                       ${item.signature ? `<span class="menu-signature-badge"><i class="fa-solid fa-star"></i> Signature</span>` : ''}
+                      ${item.name}
                     </span>
                     <span class="menu-item-price">${item.price}</span>
                   </div>
@@ -1349,14 +1409,14 @@
       savedScrollY = window.scrollY; // Preserve scroll position of Landing Page
 
       // Smooth Transition Logic
-      landingView.style.transform = 'scale(0.95)';
+      landingView.style.transform = 'scale(0.98)';
       landingView.style.opacity = '0';
 
       setTimeout(() => {
         landingView.classList.add('view-hidden');
         menuView.classList.remove('view-hidden');
         menuView.style.opacity = '0';
-        menuView.style.transform = 'translateY(20px)';
+        menuView.style.transform = 'translateY(15px)';
 
         window.scrollTo({ top: 0, behavior: 'instant' });
 
@@ -1364,20 +1424,20 @@
           menuView.style.opacity = '1';
           menuView.style.transform = 'translateY(0)';
         });
-      }, 400);
+      }, 600);
 
       history.pushState({ view: 'menu' }, ''); // Enable native hardware back button handling
     }
 
     function navigateToLanding() {
       menuView.style.opacity = '0';
-      menuView.style.transform = 'translateY(20px)';
+      menuView.style.transform = 'translateY(15px)';
 
       setTimeout(() => {
         menuView.classList.add('view-hidden');
         landingView.classList.remove('view-hidden');
         landingView.style.opacity = '0';
-        landingView.style.transform = 'scale(1.05)';
+        landingView.style.transform = 'scale(1.02)';
 
         window.scrollTo({ top: savedScrollY, behavior: 'instant' });
 
@@ -1385,7 +1445,7 @@
           landingView.style.opacity = '1';
           landingView.style.transform = 'scale(1)';
         });
-      }, 400);
+      }, 600);
     }
 
     // Handle browser/hardware back navigation organically
